@@ -11,17 +11,32 @@
 </head>
 
 <body>
-    <div class="navbar navbar-expand-lg bg-primary text-white">
+    <div class="navbar navbar-expand-lg bg-primary text-white sticky-top">
         <a class="navbar-brand fs-3 text-white ps-3">Ejercicios de JavaScript</a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#barra-navegacion"></button>
+        <button class="navbar-toggler me-3" data-bs-theme="dark" type="button" data-bs-toggle="collapse" data-bs-target="#barra-navegacion">
+            <span class="navbar-toggler-icon"></span>
+        </button>
         <nav class="collapse navbar-collapse justify-content-end" id="barra-navegacion">
             <ul class="navbar-nav flex-row-reverse me-2">
-                <li class="nav-item ms-3">Introducción</li>
-                <li class="nav-item ms-3">Condicionales</li>
-                <li class="nav-item ms-3">Bucles</li>
                 <li class="nav-item ms-3">Funciones</li>
+                <li class="nav-item ms-3">Bucles</li>
+                <li class="nav-item ms-3">Condicionales</li>
+                <li class="nav-item ms-3">Introducción</li>
             </ul>
         </nav>
+    </div>
+
+    <div class="card">
+        <h1>Introducción</h1>
+    </div>
+    <div class="card">
+        <h1>Condicionales</h1>
+    </div>
+    <div class="card">
+        <h1>Bucles</h1>
+    </div>
+    <div class="card">
+        <h1>Funciones</h1>
     </div>
 
     <script src="./js/ejercicios.js"></script>
