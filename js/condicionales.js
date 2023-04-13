@@ -28,18 +28,56 @@ function cupo() {
 function mayorQue() {
     let numero1 = parseInt(prompt("Ingrese, por favor, un número: "));
     let numero2 = parseInt(prompt("Ingrese un número más: "));
-    let mensajeInicio = `Entre ${numero1} y ${numero2}, `;
+    let mensajeInicio = `Entre el ${numero1} y el ${numero2}, `;
     let mensajeCierre = "";
     
     if (numero2 > numero1) {
-        mensajeCierre = `$numero2 es el mayor.`;
+        mensajeCierre = `el ${numero2} es el mayor.`;
     }
     else if (numero1 > numero2) {
-        mensajeCierre = `$numero1 es el mayor.`;
+        mensajeCierre = `el ${numero1} es el mayor.`;
     }
     else {
         mensajeCierre = "ambos son iguales.";
     }
 
     alert(mensajeInicio + mensajeCierre);
+}
+
+function maximo() {
+    let numero1 = parseInt(prompt("Ingrese, por favor, un número: "));
+    let numero2 = parseInt(prompt("Ingrese un número más: "));
+    let numero3 = parseInt(prompt("Ingrese un último número: "));
+    let enunciado = `De esta lista: ${numero1}, ${numero2}, ${numero3};`;
+    let respuesta = "";
+    let intro = " el mayor es el ";
+    
+    if ((numero1 == numero2) && (numero1 == numero3)) {
+        respuesta = " ningún número es mayor a los demás."
+    } else {
+        if (numero1 > numero2) {
+            if (numero1 > numero3) {
+                respuesta = intro + numero1;
+            } 
+            else if (numero3 >= numero1) {
+                respuesta = intro + numero3;
+            }
+        }
+        else if (numero2 > numero1) {
+            if (numero2 > numero3) {
+                respuesta = intro + numero2;
+            } 
+            else if (numero3 >= numero2) {
+                respuesta = intro + numero3;
+            }
+        } 
+        else if (numero1 > numero3) {
+            respuesta = intro + numero1;
+        }
+        else if (numero3 >= numero1) {
+            respuesta = intro + numero3;
+        }
+    }
+
+    alert(enunciado + respuesta);
 }
