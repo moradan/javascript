@@ -81,3 +81,29 @@ function maximo() {
 
     alert(enunciado + respuesta);
 }
+
+function jubilatorio () {
+    let edad = parseInt(prompt("Por favor, ingrese su edad (entre 1 y 120 años): "));
+    let genero = prompt("Indique, por favor, su genero (m - masculino; f - femenino): ").toUpperCase();
+    const edadM = 65;
+    const edadF = 60;
+    const error = "Alguno de los datos ingresados es invalido.";
+    let califica = "no";
+
+    if ((edad < 1) || (edad > 120) || ((genero!="M") && genero!="F")) {
+        alert(error);
+    }
+    else {
+        if ((genero == "M") && (edad >= edadM)) {
+            califica = "";
+        }
+        else if ((genero == "F") && (edad >= edadF)) {
+            califica = "";
+        }
+        
+        let mensaje = `Ud. ${califica} esta en edad para jubilarse.`
+        alert(mensaje);
+    }
+
+
+}
