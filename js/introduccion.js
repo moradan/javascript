@@ -85,5 +85,17 @@ function trigonometria() {
 }
 
 function capital() {
-    
+    let inversor1 = prompt("Ingrese, por favor, el nombre del primer inversor: ");
+    let capital1 = parseInt(prompt ("Ingrese el capital aportado por ese inversor: "));   
+    let inversor2 = prompt("Ingrese, por favor, el nombre del segundo inversor: ");
+    let capital2 = parseInt(prompt ("Ingrese el capital aportado por ese inversor: "));
+    let inversor3 = prompt("Ingrese, por favor, el nombre del último inversor: ");
+    let capital3 = parseInt(prompt("Ingrese el capital aportado por ese inversor: "));
+
+    let capitalTotal = capital1 + capital2 + capital3;
+    let aporte1 = (capital1 / capitalTotal) * 100;
+    let aporte2 = (capital2 / capitalTotal) * 100;
+    let aporte3 = (capital3 / capitalTotal) * 100;
+
+    alert(`La sociedad se inicia con un capital de $${capitalTotal}. De ese total, ${inversor1} aportó el ${aporte1.toFixed(1)}%, ${inversor2} aportó el ${aporte2.toFixed(1)}% y ${inversor3} aportó el ${aporte3.toFixed(1)}%.`);
 }
