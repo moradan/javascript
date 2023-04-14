@@ -314,3 +314,130 @@ function romanos() {
 
     alert(enunciado + mensaje);
 }
+
+function zodiaco() {
+    let mes = prompt("Ingrese el mes de su cumpleaños").toLowerCase();
+    let dia = parseInt(prompt("Ingrese el día de su cumpleaños"));
+    let signo = "";
+    let mensaje;
+
+    const NEGATIVO = "El día no puede ser ni 0 ni negativo."
+    const PASADO = `El mes de ${mes} no tiene tantos días.`;
+    
+    if (dia < 1) {
+        mensaje = NEGATIVO;
+    } else if (dia > 31) {
+        mensaje = PASADO;
+    } else {
+        switch (mes) {
+            case "enero":
+            case "1":
+                if (dia < 20) {
+                    signo = "Capricornio";
+                } else {
+                    signo = "Acuario"
+                }
+                break;
+            case "febrero":
+            case "2":
+                if (dia > 29) {
+                    mensaje = PASADO;
+                } else if (dia < 19) {
+                    signo = "Acuario";
+                } else {
+                    signo = "Piscis";
+                }
+                break;
+            case "marzo":
+            case "3":
+                if (dia < 21) {
+                    signo = "Piscis";
+                } else {
+                    signo = "Aries";
+                }
+                break;
+            case "abril":
+            case "4":
+                if (dia > 30) {
+                    mensaje = PASADO;
+                } else if (dia < 20) {
+                    signo = "Aries";
+                } else {
+                    signo = "Tauro";
+                }                
+                break;
+            case "mayo":
+            case "5":
+                if (dia < 21) {
+                    signo = "Tauro";
+                } else {
+                    signo = "Geminis";
+                }
+                break;
+            case "junio":
+            case "6":
+                if (dia > 30) {
+                    mensaje = PASADO;
+                } else if (dia < 21) {
+                    signo = "Geminis";
+                } else {
+                    signo = "Cáncer";
+                }
+                break;
+            case "julio":
+            case "7":
+                if (dia < 23) {
+                    signo = "Cáncer";
+                } else {
+                    signo = "Leo";
+                }
+                break;
+            case "agosto":
+            case "8":
+                if (dia < 23) {
+                    signo = "Leo";
+                } else {
+                    signo = "Virgo";
+                }
+                break;
+            case "septiembre":
+            case "setiembre":
+            case "9":
+                if (dia > 30) {
+                    mensaje = PASADO;
+                } else if (dia < 23) {
+                    signo = "Virgo";
+                } else {
+                    signo = "Libra";
+                }
+                break;
+            case "octubre":
+            case "otubre":
+            case "10":
+                if (dia < 23) {
+                    signo = "Libra";
+                } else {
+                    signo = "Escorpio";
+                }
+                break;
+            case "noviembre":
+            case "11":
+                if (dia > 30) {
+                    mensaje = PASADO;
+                } else if (dia < 22) {
+                    signo = "Escorpio";
+                } else {
+                    signo = "Sagitario";
+                }
+                break;
+            case "diciembre":
+            case "12":
+                break;
+            default:
+                mensaje = `${mes} no es el nombre de un mes.`;
+        }
+    }
+        
+    if (signo != "") { mensaje = `Ud. es de ${signo}`};
+    alert(mensaje);
+}
