@@ -214,22 +214,103 @@ function trigonometria() {
     let lado2 = parseInt(prompt("Ingrese la longitud del segundo lado: "));
     let lado3 = parseInt(prompt("Ingrese la longitud del último lado: "));
 
-    let esValido;
+    let mensaje;
 
-    if (lado3 < Math.abs(lado1 - lado2) || lado3 > lado1 + lado2) {
-        esValido = "no";
+    if (lado3 <= Math.abs(lado1 - lado2) || lado3 >= lado1 + lado2) {
+        mensaje = "no conforman un triangulo válido.";
     } else {
-        esValido = "";
+        let tipo;
+        if (lado1 == lado2 && lado2 == lado3) {
+            tipo = "equilatero";
+        } else if (lado1 != lado2 && lado2 != lado3 && lado1 != lado3) {
+            tipo = "escaleno";
+        } else {
+            tipo = "isósceles";
+        }
+        mensaje = `conforman un triangulo ${tipo}.`;        
     }
 
-    let tipo;
-    if (lado1 == lado2 && lado2 == lado3) {
-        tipo = "equilatero";
-    } else if (lado1 != lado2 && lado2 != lado3 && lado1 != lado3) {
-        tipo = "escaleno";
-    } else {
-        tipo = "isósceles";
+    alert(`Esos lados ${mensaje}`);
+}
+
+function meses() {
+    let numero = parseInt(prompt("Por favor ingrese un numero del 1 al 12."));
+    let mensaje = `El mes número ${numero} es el mes de `;
+
+    switch (numero) {
+        case 1:
+            mensaje += "enero.";
+            break;
+        case 2:
+            mensaje += "febrero.";
+            break;
+        case 3:
+            mensaje += "marzo.";
+            break;
+        case 4:
+            mensaje += "abril.";
+            break;
+        case 5:
+            mensaje += "mayo.";
+            break;
+        case 6:
+            mensaje += "junio.";
+            break;
+        case 7:
+            mensaje += "julio.";
+            break;
+        case 8:
+            mensaje += "agosto.";
+            break;
+        case 9:
+            mensaje += "septiembre.";
+            break;
+        case 10:
+            mensaje += "octubre.";
+            break;
+        case 11:
+            mensaje += "noviembre.";
+            break;
+        case 12:
+            mensaje += "diciembre.";
+            break;
+        default:
+            mensaje = `El número ${numero} no corresponde a un mes del año.`;
     }
 
-    alert(`Esos lados ${esValido} forman un triangulo valido, el cual es ${tipo}.`)
+    alert(mensaje);
+}
+
+function romanos() {
+    let romano = prompt("Por favor ingrese una letra que corresponda a un numero romano: ").toUpperCase();
+    let enunciado = `La letra ${romano} `;
+    let mensaje =  "corresponde al número romano ";
+
+    switch (romano) {
+        case "I":
+            mensaje += "1";
+            break;
+        case "V":
+            mensaje += "5";
+            break;
+        case "X":
+            mensaje += "10";
+            break;
+        case "L":
+            mensaje += "50";
+            break;
+        case "C":
+            mensaje += "100";
+            break;
+        case "D":
+            mensaje += "500";
+            break;
+        case "M":
+            mensaje += "1000";
+            break;
+        default:
+            mensaje = "no corresponde a un numero romano.";
+    }
+
+    alert(enunciado + mensaje);
 }
