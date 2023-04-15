@@ -155,3 +155,47 @@ function factorial() {
     }
 }
 
+function validar() {
+    const VALIDO = "válida";
+    const INVALIDO = "inválida";
+    let nota;
+    let validez = INVALIDO;
+
+    while(validez == INVALIDO) {
+        nota = parseInt(prompt("Ingrese una nota del 0 al 10:"));
+
+        if (nota < 0 || nota > 10) {
+            validez = INVALIDO;
+        } else {
+            validez = VALIDO;
+        }
+        alert(`La nota ingresada es ${validez}.`)
+    }
+}
+
+function validarExcepciones() {
+    const VALIDO = "La nota ingresada es válida."
+    const CERO = "Recuerde que la nota 0 esta reservada para ausentes."
+    const UNO_TRES = "Recuerde que 1 y 3 se asignan en casos especiales.";
+    const FUERA_RANGO = "La nota tiene que estar entre 1 y 10.";
+    const INVALIDO = -1;
+    let nota;
+    let mensaje = INVALIDO;
+
+    while(mensaje != VALIDO) {
+        nota = parseInt(prompt("Ingrese una nota valida del 1 al 10:"));
+
+        if (nota < 0 || nota > 10) {
+            mensaje = FUERA_RANGO;
+        } else if (nota == 0) {
+            mensaje = CERO;
+        } else if (nota == 1 || nota == 3) {
+            mensaje = UNO_TRES;
+        } else {
+            mensaje = VALIDO;
+        }
+        alert(mensaje);
+    }
+}
+
+
