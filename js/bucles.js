@@ -198,4 +198,25 @@ function validarExcepciones() {
     }
 }
 
+function validarSiNo() {
+    let CONTINUAR = "continuar";
+    let CANCELAR = "cancelar";
+    let respuesta;
+    let mensaje;
+    let validez = false;
+    
+    while(!validez) {
+        respuesta = prompt("¿Desea continuar? [S/N]").toUpperCase();
+
+        if (respuesta == "S") {
+            mensaje = CONTINUAR;
+            validez = true;
+        } else if (respuesta == "N") {
+            mensaje = CANCELAR;
+            validez = true;
+        }
+    }
+    alert(`Ud. decidió ${mensaje}.`);
+}
+
 
