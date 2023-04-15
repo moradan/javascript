@@ -69,9 +69,9 @@ function fizzBuzz() {
                 i++;
             }
         }
+        alert(mensaje);
     }
 
-    alert(mensaje);
 }
 
 function edadMultiplos() {
@@ -106,21 +106,52 @@ function estaturaPromedio() {
     let cantidad_jugadores = parseInt(prompt("Ingrese la cantidad de jugadores en el equipo."));
     let estatura_acumulado = 0;
 
-    for (let i = 0; i < cantidad_jugadores; i++) {
-        estatura_acumulado += parseFloat(prompt(`Ingrese la estatura en metros del jugador #${i}:`));
+    if (cantidad_jugadores == 0) {
+        alert(`Cuando tengas jugadores volve a ejecutar este programa.`);
+    } else {
+        for (let i = 0; i < cantidad_jugadores; i++) {
+            estatura_acumulado += parseFloat(prompt(`Ingrese la estatura en metros del jugador #${i + 1}:`));
+        }
+        alert(`La estatura promedio del equipo es de ${(estatura_acumulado / cantidad_jugadores).toFixed(2)}mts.`);
     }
 
-    alert(`La estatura promedio del equipo es de ${(estatura_acumulado / cantidad_jugadores).toFixed(2)}mts.`);
 }
 
 function busqueda() {
     let cantidad = parseInt(prompt("Ingrese la cantidad numeros para listar."));
     let lista = [];
+    let ordenMayor = 0;
 
-    for (let i = 0; i < cantidad_jugadores; i++) {
-        estatura_acumulado += parseFloat(prompt(`Ingrese la estatura en metros del jugador #${i}:`));
+    if (cantidad == 0) {
+        alert("No se puede hacer una lista con 0 elementos.");
+    } else {
+        for (let i = 0; i < cantidad; i++) {
+            lista[i] = parseInt(prompt("Ingrese un numero entero."));        
+        }
+
+        for (let i = 0; i < cantidad; i++) {
+            if (lista[ordenMayor] < lista[i]) {
+                ordenMayor = i;
+            }
+        }
+
+        alert(`El mayor número de la lista es el ${lista[ordenMayor]} y aparece por primera vez en el lugar ${ordenMayor} de la lista.`);
     }
+}
 
-    alert(`La estatura promedio del equipo es de ${(estatura_acumulado / cantidad_jugadores).toFixed(2)}mts.`);
+function factorial() {
+    let numero = parseInt(prompt("Por favor ingrese un número natural."));
+    let factorial = 1;
+
+    if (numero < 0) {
+        alert("El numero debe ser natural.");
+    } else {
+        if (numero != 0 && numero != 1) {
+            for (let n = 2; n <= numero; n++) {
+                factorial *= n;
+            }
+        } 
+        alert(`El factorial de ${numero} es ${factorial}.`);
+    }
 }
 
