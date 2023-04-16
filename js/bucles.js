@@ -389,3 +389,18 @@ function login() {
         alert(mensaje);
     } while (!finalizado);
 }
+
+function matrix() {
+    let ancho = parseInt(prompt("Ingrese el ancho de la matriz."));
+    let alto = parseInt(prompt("Ingrese el alto de la matriz."));
+    let matriz = "";
+
+    for (let row = 1; row <= alto; row++) {
+        for (let col = 1; col <= ancho; col++) {
+            matriz += "X ";
+        }
+        matriz += "\n";
+    }
+    alert(matriz);
+}
+
