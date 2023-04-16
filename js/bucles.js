@@ -358,3 +358,34 @@ function sumaSueldos() {
     alert(`El sueldo percibido hasta la fecha es de $${sueldoTotal.toFixed(2)}.`);
 }
 
+function login() {
+    const USUARIO = "admin";
+    const PASSWORD = "123456";
+    const VALIDADO = "Acceso concedido.";
+    const DATOS_INALIDOS = "Alguno de los datos ingresados es inválido.";
+    const BLOQUEADA = "Se ha bloqueado la cuenta.";
+
+    let usuario = "";
+    let password = "";
+    let mensaje = "";
+    let intentos = 3;
+    let finalizado = false;
+
+    do {
+        usuario = prompt("Ingrese el nombre de usuario.");
+        password = prompt("Ingrese la contraseña.");
+    
+        if (usuario == USUARIO && password == PASSWORD) {
+            mensaje = VALIDADO;
+            finalizado = true;
+        } else {
+            mensaje = DATOS_INALIDOS;
+            intentos--;
+            if (intentos==0) {
+                mensaje = BLOQUEADA;
+                finalizado = true;
+            }
+        }
+        alert(mensaje);
+    } while (!finalizado);
+}
