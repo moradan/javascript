@@ -205,9 +205,9 @@ function validarSiNo() {
     let mensaje;
     let validez = false;
     
-    while(!validez) {
+    do {
         respuesta = prompt("¿Desea continuar? [S/N]").toUpperCase();
-
+    
         if (respuesta == "S") {
             mensaje = CONTINUAR;
             validez = true;
@@ -215,8 +215,145 @@ function validarSiNo() {
             mensaje = CANCELAR;
             validez = true;
         }
-    }
+    } while(!validez);
+    
     alert(`Ud. decidió ${mensaje}.`);
 }
 
+function maximoMinimo () {
+    const CIERRE = 0;
+    let maximo = 0;
+    let minimo = 0;
+    let numero = 0;
+
+    do {
+        numero = parseInt(prompt("Ingrese un número (0 para terminar):"));
+        
+        if (numero > maximo) {
+            maximo = numero;
+        }
+        if (numero < minimo) {
+            minimo = numero;
+        }
+    } while (numero != CIERRE)
+    alert(`El máximo número fue el ${maximo}, y el mínimo fue el ${minimo}.`)
+}
+
+function masJoven () {
+    const CIERRE  = "*";
+
+    let jovenNombre = "";
+    let jovenEdad = 120;
+    let nombre = "";
+    let edad = 0;
+
+    let continuar = true;
+
+    do {
+        
+        nombre = prompt("Ingrese el nombre de una persona:");
+        
+        if (nombre == "*") {
+            continuar = false;
+        } else {
+            edad = parseInt(prompt("Ingrese su edad:"));
+
+            if (edad < jovenEdad) {
+                jovenEdad = edad;
+                jovenNombre = nombre;
+            }
+        }
+    } while (continuar);
+    alert(`El más joven es ${jovenNombre} con ${jovenEdad} años de edad.`);
+}
+
+function promedioAcumulado() {
+    const QUIEBRE = 20;
+    const PROMPT = "Ingrese un número.";
+    const ENUNCIADO_PROMEDIO = "El promedio hasta ahora es";
+    
+    let mensaje = PROMPT;
+    let total = 0;
+    let cantidad = 0;
+    let promedio = 0;
+    
+    do {
+        total += parseInt(prompt(mensaje));
+        cantidad++;
+        promedio = total / cantidad;
+        mensaje = ENUNCIADO_PROMEDIO + ` ${promedio.toFixed(2)}. ` + PROMPT;
+    } while(promedio < QUIEBRE);
+
+    alert(`El promedio ya alcanzó ${QUIEBRE} o más, la cantidad de números ingresados fue ${cantidad}.`);
+}
+
+function porcentajePares () {
+    let continuar = true;
+    let respuesta = "";
+    let numero = 0;
+    let cantidad_total = 0;
+    let cantidad_par = 0;
+
+    do {
+        numero = parseInt(prompt("Ingrese un número entero."));
+        cantidad_total++;
+
+        do {
+            respuesta = prompt("¿Desea continuar? [S/N]").toUpperCase();
+        } while (respuesta != "S" && respuesta != "N");
+
+        if (respuesta == "N") {
+            continuar = false;
+        }
+
+        if (numero % 2 == 0) {
+            cantidad_par++;
+        }
+    } while (continuar);
+
+    let porcentaje = ((cantidad_par / cantidad_total) * 100).toFixed(2);
+    alert(`De los números ingresados el ${porcentaje}% son pares.`);
+}
+
+function laCuenta() {
+    let continuar = true;
+    let respuesta = "";
+    let monto_total = 0;
+    let precio_unitario;
+    let unidades;
+
+    do {
+        precio_unitario = 0;
+        unidades = 0;
+        unidades = parseInt(prompt("Ingrese la cantidad de unidades vendidas."));
+        precio_unitario = parseInt(prompt("Ingrese el precio unitario."));
+        monto_total += precio_unitario * unidades;
+
+        do {
+            respuesta = prompt("¿Desea ingresar otro artículo? [S/N]").toUpperCase();
+        } while(respuesta != "S" && respuesta != "N");
+
+        if (respuesta == "N") {
+            continuar = false;
+        }
+
+    } while (continuar);
+
+    alert(`El total de la cuenta es: $${monto_total}.`);
+}
+
+function sumaSueldos() {
+    let sueldoTotal = 0;
+
+    for (let i = 1; i <= 12; i++) {
+        sueldo = parseFloat(prompt("Ingrese el sueldo del mes #{i} (use un valor negativo para el sueldo del mes actual).")).toFixed(2);
+        if (sueldo < 0) {
+            break;
+        } else {
+            sueldoTotal += sueldo;
+        }
+    }
+
+    alert(`El sueldo percibido hasta la fecha es de $${sueldoTotal}.`);
+}
 
