@@ -344,9 +344,10 @@ function laCuenta() {
 
 function sumaSueldos() {
     let sueldoTotal = 0;
+    let sueldo = 0;
 
     for (let i = 1; i <= 12; i++) {
-        sueldo = parseFloat(prompt("Ingrese el sueldo del mes #{i} (use un valor negativo para el sueldo del mes actual).")).toFixed(2);
+        sueldo = parseFloat(prompt(`Ingrese el sueldo del mes #${i} (use un valor negativo para el sueldo del mes actual).`));
         if (sueldo < 0) {
             break;
         } else {
@@ -354,6 +355,6 @@ function sumaSueldos() {
         }
     }
 
-    alert(`El sueldo percibido hasta la fecha es de $${sueldoTotal}.`);
+    alert(`El sueldo percibido hasta la fecha es de $${sueldoTotal.toFixed(2)}.`);
 }
 
