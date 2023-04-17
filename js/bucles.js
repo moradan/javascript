@@ -404,3 +404,52 @@ function matrix() {
     alert(matriz);
 }
 
+function timer() {
+    let validez = false;
+    let minutos_objetivo = 0;
+    let respuesta = undefined;
+    let finalizado = false;
+
+    do {
+        respuesta = prompt("Por favor ingrese una cantidad de minutos.");
+
+        if (respuesta == null) {
+            finalizado = true;
+            validez = true;
+        } else {
+            minutos_objetivo = parseInt(respuesta);
+            console.log(minutos_objetivo);
+            if (isNaN(minutos_objetivo) || minutos_objetivo < 0) {
+                alert("La cantidad de minutos debe ser un entero positivo.");
+            } else {
+                validez = true;
+            }
+        }
+    } while (!validez);
+    
+    if (!finalizado) {
+        /*
+        let minutos_actual = 0;
+        let segundos_actual = 0;
+        
+        let temporizador = setInterval(()=>{
+            console.log(`${minutos_actual.toString().padStart(2, '0')}:${segundos_actual.toString().padStart(2, '0')}`);
+            segundos_actual++;
+            /*
+            if (segundos_actual > 59) {
+                segundos_actual = 0;
+                minutos_actual++;
+                
+                if (minutos_actual >= minutos_objetivo) {
+                    finalizado = true;
+                }
+            }
+        }, 1000);
+
+        while (!finalizado) {}
+        */
+    }
+
+    // clearInterval(temporizador);
+    console.log("Se acabó el tiempo.");
+}
