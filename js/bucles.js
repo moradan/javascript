@@ -434,7 +434,6 @@ function timer() {
         console.log(`Comienza el conteo de ${minutos_objetivo} minutos.`);
 
         let temporizador = setInterval(()=>{
-            console.clear();
             console.log(`${minutos_actual.toString().padStart(2, '0')}:${segundos_actual.toString().padStart(2, '0')}`);
             segundos_actual++;
             if (segundos_actual > 59) {
