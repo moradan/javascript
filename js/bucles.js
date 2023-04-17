@@ -428,28 +428,24 @@ function timer() {
     } while (!validez);
     
     if (!finalizado) {
-        /*
         let minutos_actual = 0;
         let segundos_actual = 0;
         
+        console.log(`Comienza el conteo de ${minutos_objetivo} minutos.`);
+
         let temporizador = setInterval(()=>{
+            console.clear();
             console.log(`${minutos_actual.toString().padStart(2, '0')}:${segundos_actual.toString().padStart(2, '0')}`);
             segundos_actual++;
-            /*
             if (segundos_actual > 59) {
                 segundos_actual = 0;
                 minutos_actual++;
                 
                 if (minutos_actual >= minutos_objetivo) {
-                    finalizado = true;
+                    console.log("Se acabó el tiempo.");
+                    clearInterval(temporizador);
                 }
             }
         }, 1000);
-
-        while (!finalizado) {}
-        */
     }
-
-    // clearInterval(temporizador);
-    console.log("Se acabó el tiempo.");
 }
