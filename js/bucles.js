@@ -143,6 +143,10 @@ function estaturaPromedio() {
 
 function busqueda() {
     let cantidad = parseInt(prompt("Ingrese la cantidad numeros para listar."));
+    while (cantidad < 0 ) {
+        cantidad = parseInt(prompt("La cantidad no puede ser negativa."));
+    }
+
     let lista = [];
     let ordenMayor = 0;
 
@@ -151,9 +155,6 @@ function busqueda() {
     } else {
         for (let i = 0; i < cantidad; i++) {
             lista[i] = parseInt(prompt("Ingrese un numero entero."));        
-        }
-
-        for (let i = 0; i < cantidad; i++) {
             if (lista[ordenMayor] < lista[i]) {
                 ordenMayor = i;
             }
@@ -246,20 +247,20 @@ function validarSiNo() {
 
 function maximoMinimo () {
     const CIERRE = 0;
-    let maximo = 0;
-    let minimo = 0;
-    let numero = 0;
-
-    do {
-        numero = parseInt(prompt("Ingrese un número (0 para terminar):"));
-        
+    
+    let numero = parseInt(prompt("Ingrese un número (0 para terminar):"));
+    let maximo = numero;
+    let minimo = numero;
+    while(numero!= CIERRE) {    
+        numero = parseInt(prompt("Ingrese otro número (0 para terminar):"));
+    
         if (numero > maximo) {
             maximo = numero;
         }
         if (numero < minimo) {
             minimo = numero;
         }
-    } while (numero != CIERRE)
+    }
     alert(`El máximo número fue el ${maximo}, y el mínimo fue el ${minimo}.`)
 }
 
@@ -271,23 +272,18 @@ function masJoven () {
     let nombre = "";
     let edad = 0;
 
-    let continuar = true;
-
-    do {
-        
-        nombre = prompt("Ingrese el nombre de una persona:");
-        
-        if (nombre == "*") {
-            continuar = false;
-        } else {
-            edad = parseInt(prompt("Ingrese su edad:"));
-
-            if (edad < jovenEdad) {
-                jovenEdad = edad;
-                jovenNombre = nombre;
-            }
+    nombre = prompt("Ingrese el nombre de una persona:");
+    while(nombre!=CIERRE) {
+        edad = parseInt(prompt("Ingrese su edad [entre 1 y 120]:"));
+        while (edad < 1 || edad > 119) {
+            edad = parseInt(prompt("Ingrese un valor mayor que 0 y menor a 120 para la edad."))
         }
-    } while (continuar);
+        if (edad < jovenEdad) {
+            jovenEdad = edad;
+            jovenNombre = nombre;
+        }
+        nombre = prompt("Ingrese el nombre de la siguiente persona.");
+    }
     alert(`El más joven es ${jovenNombre} con ${jovenEdad} años de edad.`);
 }
 
@@ -312,30 +308,26 @@ function promedioAcumulado() {
 }
 
 function porcentajePares () {
-    let continuar = true;
+    const NO = "N";
+    const SI = "S";
     let respuesta = "";
     let numero = 0;
-    let cantidad_total = 0;
-    let cantidad_par = 0;
+    let cantidadTotal = 0;
+    let cantidadPar = 0;
 
     do {
         numero = parseInt(prompt("Ingrese un número entero."));
-        cantidad_total++;
+        cantidadTotal++;
+        if (numero % 2 == 0) {
+            cantidadPar++;
+        }
 
         do {
             respuesta = prompt("¿Desea continuar? [S/N]").toUpperCase();
-        } while (respuesta != "S" && respuesta != "N");
+        } while (respuesta != SI && respuesta != NO);
+    } while (respuesta==SI);
 
-        if (respuesta == "N") {
-            continuar = false;
-        }
-
-        if (numero % 2 == 0) {
-            cantidad_par++;
-        }
-    } while (continuar);
-
-    let porcentaje = ((cantidad_par / cantidad_total) * 100).toFixed(2);
+    let porcentaje = ((cantidadPar / cantidadTotal) * 100).toFixed(2);
     alert(`De los números ingresados el ${porcentaje}% son pares.`);
 }
 
