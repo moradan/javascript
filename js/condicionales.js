@@ -1,13 +1,12 @@
 function esPar() {
-    let numero = parseInt(prompt("Ingrese, por favor, un numero: "));
+    let numero = parseInt(prompt("Ingrese, por favor, un numero."));
     const isEven = num => num % 2 === 0;
-    let noEs = "no";
-
-    if (isEven(numero)) {
-        noEs = "";
-    }
     
-    const mensaje = `El número ${numero} ${noEs} es par.`;
+    let esONo = "no es";
+    if (isEven(numero)) {
+        esONo = "es";
+    }
+    const mensaje = `El número ${numero} ${esONo} par.`;
     
     alert(mensaje);
 }
@@ -16,9 +15,9 @@ function cupo() {
     let cantidadInscriptos = parseInt(prompt("Ingrese la cantidad de inscriptos: "));
     let cantidadAsientos = parseInt(prompt("Ingrese, por favor, la cantidad de asientos disponibles: "));
     let mensaje = "Los asientos alcanzan para todos los inscriptos";
+    
     const faltante = cantidadInscriptos - cantidadAsientos;
-
-    if (cantidadInscriptos > cantidadAsientos) {
+    if (faltante > 0) {
         mensaje = `Faltan ${faltante} asientos para acomodar a todos los inscriptos.`;
     }
 
@@ -26,60 +25,62 @@ function cupo() {
 }
 
 function mayorQue() {
-    let numero1 = parseInt(prompt("Ingrese, por favor, un número: "));
-    let numero2 = parseInt(prompt("Ingrese un número más: "));
-    let mensajeInicio = `Entre el ${numero1} y el ${numero2}, `;
-    let mensajeCierre = "";
+    let numero1 = parseInt(prompt("Ingrese, por favor, un número."));
+    let numero2 = parseInt(prompt("Ingrese un número más."));
+    
+    let enunciado = `Entre el ${numero1} y el ${numero2}, `;
+    let conclusion = "";
     
     if (numero2 > numero1) {
-        mensajeCierre = `el ${numero2} es el mayor.`;
+        conclusion = `el ${numero2} es el mayor.`;
     }
     else if (numero1 > numero2) {
-        mensajeCierre = `el ${numero1} es el mayor.`;
+        conclusion = `el ${numero1} es el mayor.`;
     }
     else {
-        mensajeCierre = "ambos son iguales.";
+        conclusion = "ambos son iguales.";
     }
 
-    alert(mensajeInicio + mensajeCierre);
+    alert(enunciado + conclusion);
 }
 
 function maximo() {
     let numero1 = parseInt(prompt("Ingrese, por favor, un número: "));
     let numero2 = parseInt(prompt("Ingrese un número más: "));
     let numero3 = parseInt(prompt("Ingrese un último número: "));
+    
     let enunciado = `De esta lista: ${numero1}, ${numero2}, ${numero3};`;
-    let respuesta = "";
+    let conclusion = "";
     let intro = " el mayor es el ";
     
     if ((numero1 == numero2) && (numero1 == numero3)) {
-        respuesta = " ningún número es mayor a los demás."
+        conclusion = " ningún número es mayor a los demás."
     } else {
         if (numero1 > numero2) {
             if (numero1 > numero3) {
-                respuesta = intro + numero1;
+                conclusion = intro + numero1;
             } 
             else if (numero3 >= numero1) {
-                respuesta = intro + numero3;
+                conclusion = intro + numero3;
             }
         }
         else if (numero2 > numero1) {
             if (numero2 > numero3) {
-                respuesta = intro + numero2;
+                conclusion = intro + numero2;
             } 
             else if (numero3 >= numero2) {
-                respuesta = intro + numero3;
+                conclusion = intro + numero3;
             }
         } 
         else if (numero1 > numero3) {
-            respuesta = intro + numero1;
+            conclusion = intro + numero1;
         }
         else if (numero3 >= numero1) {
-            respuesta = intro + numero3;
+            conclusion = intro + numero3;
         }
     }
 
-    alert(enunciado + respuesta);
+    alert(enunciado + conclusion);
 }
 
 function jubilatorio () {
@@ -89,15 +90,15 @@ function jubilatorio () {
     const EDAD_MAX = 120;
     const EDAD_INVALIDA = "La edad no es válida.";
     const GENERO_INVALIDO = "El genero no es válido."
-    let califica = "no";
     
-    let edad = parseInt(prompt(`Por favor, ingrese su edad (entre ${EDAD_MIN} y ${EDAD_MAX} años): `));
+    let edad = parseInt(prompt(`Por favor, ingrese su edad (entre ${EDAD_MIN} y ${EDAD_MAX} años).`));
     
-    if (edad < EDAD_MIN || edad > EDAD_M) {
+    if (edad < EDAD_MIN || edad > EDAD_MAX) {
         alert(EDAD_INVALIDA);
     }
     else {
-        let genero = prompt("Indique, por favor, su genero (m - masculino; f - femenino): ").toUpperCase();
+        let genero = prompt("Indique, por favor, su genero (m - masculino; f - femenino).").toUpperCase();
+        let califica = "no";
         if (genero!="M" && genero!="F") {
             alert(GENERO_INVALIDO);
         }
@@ -110,8 +111,8 @@ function jubilatorio () {
 }
 
 function aporte() {
-    let edad = parseInt(prompt("Por favor, indique su edad: "));
-    let sueldo = parseInt(prompt("Cual es su sueldo en a$r: "));
+    let edad = parseInt(prompt("Por favor, indique su edad."));
+    let sueldo = parseInt(prompt("Cual es su sueldo en a$r."));
     
     const CATEGORIA1 = 20000;
     const CATEGORIA2 = 30000;
@@ -145,9 +146,9 @@ function aporte() {
 }
 
 function ordenar() {
-    let numero1 = parseInt(prompt("Ingrese un número: "));
-    let numero2 = parseInt(prompt("Ingrese un segundo número: "));
-    let numero3 = parseInt(prompt("Ingrese un último número: "));
+    let numero1 = parseInt(prompt("Ingrese un número."));
+    let numero2 = parseInt(prompt("Ingrese un segundo número."));
+    let numero3 = parseInt(prompt("Ingrese un último número."));
 
     let orden1;
     let orden2;
@@ -186,8 +187,8 @@ function ordenar() {
 }
 
 function divisible () {
-    let numero1 = parseInt(prompt("Por favor, ingrese un número: "));
-    let numero2 = parseInt(prompt("Ingrese, por favor, un segundo número: "));
+    let numero1 = parseInt(prompt("Por favor, ingrese un número."));
+    let numero2 = parseInt(prompt("Ingrese, por favor, un segundo número."));
 
     let orden1;
     let orden2;
@@ -210,9 +211,9 @@ function divisible () {
 }
 
 function trigonometria() {
-    let lado1 = parseInt(prompt("Ingrese la longitud del primer lado del triangulo: "));
-    let lado2 = parseInt(prompt("Ingrese la longitud del segundo lado: "));
-    let lado3 = parseInt(prompt("Ingrese la longitud del último lado: "));
+    let lado1 = parseInt(prompt("Ingrese la longitud del primer lado del triangulo."));
+    let lado2 = parseInt(prompt("Ingrese la longitud del segundo lado."));
+    let lado3 = parseInt(prompt("Ingrese la longitud del último lado."));
 
     let mensaje;
 
@@ -284,83 +285,85 @@ function meses() {
 function romanos() {
     let romano = prompt("Por favor ingrese una letra que corresponda a un numero romano: ").toUpperCase();
     let enunciado = `La letra ${romano} `;
-    let mensaje =  "corresponde al número romano ";
+    let conclusion =  "corresponde al número romano ";
 
     switch (romano) {
         case "I":
-            mensaje += "1";
+            conclusion += "1";
             break;
         case "V":
-            mensaje += "5";
+            conclusion += "5";
             break;
         case "X":
-            mensaje += "10";
+            conclusion += "10";
             break;
         case "L":
-            mensaje += "50";
+            conclusion += "50";
             break;
         case "C":
-            mensaje += "100";
+            conclusion += "100";
             break;
         case "D":
-            mensaje += "500";
+            conclusion += "500";
             break;
         case "M":
-            mensaje += "1000";
+            conclusion += "1000";
             break;
         default:
-            mensaje = "no corresponde a un numero romano.";
+            conclusion = "no corresponde a un numero romano.";
     }
 
-    alert(enunciado + mensaje);
+    alert(enunciado + conclusion);
 }
 
 function zodiaco() {
-    let mes = prompt("Ingrese el mes de su cumpleaños").toLowerCase();
-    let dia = parseInt(prompt("Ingrese el día de su cumpleaños"));
+    let mes = prompt("Ingrese el mes de su cumpleaños.").toLowerCase();
+    let dia = parseInt(prompt("Ingrese el día de su cumpleaños."));
     let signo = "";
-    let mensaje;
+    let mensaje = "";
     
     const NO_ES_MES = `El mes ${mes} no existe.`
-    switch (mes) {
-        case "1":
-            mes = "enero";
-            break;
-        case "2":
-            mes = "febrero";
-            break;
-        case "3":
-            mes = "marzo";
-            break;
-        case "4":
-            mes = "abril";
-            break;
-        case "5":
-            mes = "mayo";
-            break;
-        case "6":
-            mes = "junio";
-            break;
-        case "7":
-            mes = "julio";
-            break;
-        case "8":
-            mes = "agosto";
-            break;
-        case "9":
-            mes = "septiembre";
-            break;
-        case "10":
-            mes = "octubre";
-            break;
-        case "11":
-            mes = "noviembre";
-            break;
-        case "12":
-            mes = "diciembre";
-            break;
-        default:
-            mensaje = NO_ES_MES;        
+    if (!isNaN(mes)) {
+        switch (mes) {
+            case "1":
+                mes = "enero";
+                break;
+            case "2":
+                mes = "febrero";
+                break;
+            case "3":
+                mes = "marzo";
+                break;
+            case "4":
+                mes = "abril";
+                break;
+            case "5":
+                mes = "mayo";
+                break;
+            case "6":
+                mes = "junio";
+                break;
+            case "7":
+                mes = "julio";
+                break;
+            case "8":
+                mes = "agosto";
+                break;
+            case "9":
+                mes = "septiembre";
+                break;
+            case "10":
+                mes = "octubre";
+                break;
+            case "11":
+                mes = "noviembre";
+                break;
+            case "12":
+                mes = "diciembre";
+                break;
+            default:
+                mensaje = NO_ES_MES;        
+        }
     }
     
     const MENOS_QUE_UNO = "El día no puede ser ni 0 ni negativo."
@@ -470,6 +473,6 @@ function zodiaco() {
         }    
     }     
        
-    if (signo != "") { mensaje = `Ud. es de ${signo}`};
+    if (signo != "") { mensaje = `Ud. es de ${signo}.`};
     alert(mensaje);
 }
