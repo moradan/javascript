@@ -46,10 +46,14 @@ function secuencia() {
 
 function tablaMultiplicar() {
     let numero = parseInt(prompt("Ingrese un número entre el 1 y el 10"));
+    while(numero < 1 || numero > 10) {
+        numero = parseInt(prompt("El número no estuvo entre el 1 y el 10. Igrese otro número."));
+    }
+
     let mensaje = `La tabla del ${numero}:\n--------------------------\n`;
 
     for (let i = 1; i <= 10; i++) {
-        mensaje += `${numero} x ${i} = ${numero*i}\n`;
+        mensaje += `${numero} x ${i} = ${numero * i}\n`;
     }
 
     alert(mensaje);
@@ -57,20 +61,21 @@ function tablaMultiplicar() {
 
 function fizzBuzz() {
     let numero = parseInt(prompt("Ingrese un número natural (no 0)."));
+    while(numero < 1) {
+        numero = parseInt(prompt("El número debe ser igualo mayor que 1. Igrese otro número."));
+    }
+
     let mensaje = `Estos son los primeros ${numero} multiplos de 3 excluyendo los multiplos de 5.\n`;
 
-    if (numero < 1) {
-        alert("Los números naturales no pueden ser 0 o negativos.")
-    } else {
-        for (let i = 1, j = 1; i <= numero; j++) {
-            multiplo = j * 3;
-            if (multiplo % 5 != 0) {
-                mensaje += `${multiplo}\n`;
-                i++;
-            }
+    for (let cantidad = 0, iterador = 1; cantidad <= numero; iterador++) {
+        multiplo = iterador * 3;
+        if (multiplo % 5 != 0) {
+            mensaje += `${multiplo}\n`;
+            cantidad++;
         }
-        alert(mensaje);
     }
+    
+    alert(mensaje);
 
 }
 
@@ -79,10 +84,12 @@ function edadMultiplos() {
 
     for (let i = 1; i <= 5; i++) {
         edades[i] = parseInt(prompt(`${i}. Ingrese una edad`));
-    }
 
-    let cantidad = 0;
-    for (let i = 1; i <= 5; i++) {
+        while(edad < 0) {
+            edades[i] = parseInt(prompt(`${edades[i]} no es una edad valida. Ingrese una edad.`));
+        }
+        
+        let cantidad = 0;
         if (edades[i] > 18 && edades[i] % 2 != 0) {
             cantidad++;
         }
@@ -92,27 +99,44 @@ function edadMultiplos() {
 }
 
 function ventasAcumuladas() {
-    let cantidad_ventas = parseInt(prompt("Ingrese la cantidad de ventas que hizo el vendedor."));
-    let ventas_acumulado = 0;
-
-    for (let i = 0; i < cantidad_ventas; i++) {
-        ventas_acumulado += parseFloat(prompt(`Ingrese el valor de la venta #${i}:`));
+    let cantidadVentas = parseInt(prompt("Ingrese la cantidad de ventas que hizo el vendedor."));
+    
+    if (cantidadVentas > 0) {
+            let ventasAcumulado = 0;
+            let ventaActual = 0;
+            for (let i = 0; i < cantidadVentas; i++) {
+                ventaActual = parseFloat(prompt(`Ingrese el valor de la venta #${i}:`));
+                while (ventaActual < 0) {
+                    ventaActual = parseFloat(prompt(`Ingrese un valor positivo para la venta #${i}:`));
+                } 
+                ventasAcumulado += ventaActual;
+            }
+        
+            alert(`El total de ventas del vendedor es de $${ventasAcumulado.toFixed(2)}`);
+    } else {
+        alert("No se ingresaron ventas.");
     }
-
-    alert(`El total de ventas del vendedor es de $${ventas_acumulado.toFixed(2)}`);
 }
 
 function estaturaPromedio() {
-    let cantidad_jugadores = parseInt(prompt("Ingrese la cantidad de jugadores en el equipo."));
-    let estatura_acumulado = 0;
+    let cantidadJugadores = parseInt(prompt("Ingrese la cantidad de jugadores en el equipo."));
+    while (cantidadJugadores < 0) {
+        cantidadJugadores = parseInt(prompt("La cantidad de jugadores no puede ser negativa."));
+    }
 
-    if (cantidad_jugadores == 0) {
+    let estaturaAcumulado = 0;
+    let estaturaActual= 0;
+    if (cantidadJugadores == 0) {
         alert(`Cuando tengas jugadores volve a ejecutar este programa.`);
     } else {
-        for (let i = 0; i < cantidad_jugadores; i++) {
-            estatura_acumulado += parseFloat(prompt(`Ingrese la estatura en metros del jugador #${i + 1}:`));
+        for (let i = 0; i < cantidadJugadores; i++) {
+            estaturaActual = parseFloat(prompt(`Ingrese la estatura en metros del jugador #${i + 1}:`));
+            while (estaturaActual < 0) {
+                estaturaActual = parseFloat(prompt(`La estatura no puede ser negativa. Cual es la estatura del jugador #${i + 1}:`));
+            }
+            estaturaAcumulado += estaturaActual;
         }
-        alert(`La estatura promedio del equipo es de ${(estatura_acumulado / cantidad_jugadores).toFixed(2)}mts.`);
+        alert(`La estatura promedio del equipo es de ${(estaturaAcumulado / cantidadJugadores).toFixed(2)}mts.`);
     }
 
 }
