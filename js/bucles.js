@@ -332,30 +332,33 @@ function porcentajePares () {
 }
 
 function laCuenta() {
-    let continuar = true;
+    const SI = "S";
+    const NO = "N";
     let respuesta = "";
-    let monto_total = 0;
-    let precio_unitario;
+    let montoTotal = 0;
+    let precioUnitario;
     let unidades;
 
     do {
-        precio_unitario = 0;
-        unidades = 0;
         unidades = parseInt(prompt("Ingrese la cantidad de unidades vendidas."));
-        precio_unitario = parseInt(prompt("Ingrese el precio unitario."));
-        monto_total += precio_unitario * unidades;
+        while (unidades < 1 || isNaN(unidades)) {
+            unidades = parseInt(prompt("La cant. debe ser mayor que 0."));
+        }
+
+        precioUnitario = parseFloat(prompt("Ingrese el precio unitario."));
+        while (precioUnitario < 0 || isNaN(unidades)) {
+            precioUnitario = parseFloat(prompt("El precio no puede ser negativo."));
+        }
+
+        montoTotal += precioUnitario * unidades;
 
         do {
             respuesta = prompt("¿Desea ingresar otro artículo? [S/N]").toUpperCase();
-        } while(respuesta != "S" && respuesta != "N");
+        } while(respuesta != SI && respuesta != NO);
 
-        if (respuesta == "N") {
-            continuar = false;
-        }
+    } while (respuesta == SI);
 
-    } while (continuar);
-
-    alert(`El total de la cuenta es: $${monto_total}.`);
+    alert(`El total de la cuenta es: $${montoTotal}.`);
 }
 
 function sumaSueldos() {
@@ -385,7 +388,6 @@ function login() {
     let password = "";
     let mensaje = "";
     let intentos = 3;
-    let finalizado = false;
 
     do {
         usuario = prompt("Ingrese el nombre de usuario.");
@@ -393,22 +395,28 @@ function login() {
     
         if (usuario == USUARIO && password == PASSWORD) {
             mensaje = VALIDADO;
-            finalizado = true;
+            intentos = 0;
         } else {
             mensaje = DATOS_INALIDOS;
-            intentos--;
-            if (intentos==0) {
-                mensaje = BLOQUEADA;
-                finalizado = true;
-            }
+            intentos--
         }
         alert(mensaje);
-    } while (!finalizado);
+    } while (intentos > 0);
+
+    if (mensaje == DATOS_INALIDOS) {alert(BLOQUEADA)}
 }
 
 function matrix() {
     let ancho = parseInt(prompt("Ingrese el ancho de la matriz."));
+    while (ancho < 1) {
+        ancho = parseInt(prompt("El ancho debe ser mayor que 0."));
+    }
+
     let alto = parseInt(prompt("Ingrese el alto de la matriz."));
+    while (alto < 1) {
+        alto = parseInt(prompt("El alto debe ser mayor que 0."));
+    }
+
     let matriz = "";
 
     for (let row = 1; row <= alto; row++) {
@@ -421,46 +429,29 @@ function matrix() {
 }
 
 function timer() {
-    let validez = false;
-    let minutos_objetivo = 0;
-    let respuesta = undefined;
-    let finalizado = false;
+    let minutosObjetivo = 0;
 
-    do {
-        respuesta = prompt("Por favor ingrese una cantidad de minutos.");
+    minutosObjetivo = parseInt(prompt("Por favor ingrese una cantidad de minutos."));
+    while (isNaN(minutosObjetivo) || minutosObjetivo < 1) {
+        minutosObjetivo = parseInt(prompt("Ingrese una cantidad positiva mayor a 0."));
+    }
 
-        if (respuesta == null) {
-            finalizado = true;
-            validez = true;
-        } else {
-            minutos_objetivo = parseInt(respuesta);
-            console.log(minutos_objetivo);
-            if (isNaN(minutos_objetivo) || minutos_objetivo < 0) {
-                alert("La cantidad de minutos debe ser un entero positivo.");
-            } else {
-                validez = true;
+    let minutosActual = 0;
+    let segundosActual = 0;
+        
+    console.log(`Comienza el conteo de ${minutosObjetivo} minutos.`);
+
+    let temporizador = setInterval(()=>{
+        console.log(`${minutosActual.toString().padStart(2, '0')}:${segundosActual.toString().padStart(2, '0')}`);
+        segundosActual++;
+        if (segundosActual > 59) {
+            segundosActual = 0;
+            minutosActual++;
+                
+            if (minutosActual >= minutosObjetivo) {
+                console.log("Se acabó el tiempo.");
+                clearInterval(temporizador);
             }
         }
-    } while (!validez);
-    
-    if (!finalizado) {
-        let minutos_actual = 0;
-        let segundos_actual = 0;
-        
-        console.log(`Comienza el conteo de ${minutos_objetivo} minutos.`);
-
-        let temporizador = setInterval(()=>{
-            console.log(`${minutos_actual.toString().padStart(2, '0')}:${segundos_actual.toString().padStart(2, '0')}`);
-            segundos_actual++;
-            if (segundos_actual > 59) {
-                segundos_actual = 0;
-                minutos_actual++;
-                
-                if (minutos_actual >= minutos_objetivo) {
-                    console.log("Se acabó el tiempo.");
-                    clearInterval(temporizador);
-                }
-            }
-        }, 1000);
-    }
+    }, 1000);
 }
