@@ -105,7 +105,6 @@ function sumarLista(lista) {
     return total;
 }
 
-// un numero perfecto es aquel que es igual a la suma de todos sus divisores, excluyendo el numero en si.
 function esNumeroPerfecto(numero) {
     //llistamos todos los divisores de numero  
     let listaDivisores = listarDivisores(numero);
@@ -115,4 +114,147 @@ function esNumeroPerfecto(numero) {
     let suma = sumarLista(listaDivisores);
     //comparamos esa suma con el numero, si la suma es igual el numero es perfecto y se devuelve true.
     return (suma == numero)
+}
+
+function comicion () {
+    const SUELDO_FIJO = 14000;
+    const COMICION = 0.16;
+
+    let ventas = calcularVentas(); 
+    let sueldo;
+
+    if (ventas == null) {
+        mensaje = "No se pudieron calcular ventas.";
+    } else {
+        sueldo = (SUELDO_FIJO + ventas * COMICION).toFixed(2);
+        mensaje = `El sueldo del vendedor es $${sueldo}`;
+    }
+    
+    mostrar(mensaje);
+}
+
+function calcularVentas () {
+    const MENSAJE_UNIDADES = "Por favor, ingrese la cantidad de unidades.";
+    const MENSAJE_PRECIO = "Por favor, indique el precio por unidad.";
+    const MENSAJE_SUBTOTAL = "Las ventas ingresadas hasta ahora suman";
+    const MENSAJE_CONTINUAR = "Desea ingresar otra venta? [S/N]";
+
+    let ventas = 0;
+    let precioUnitario = 0;
+    let unidades = 0;
+    let mensaje = "";
+
+    do {
+        unidades = pedirCantidad(MENSAJE_UNIDADES);
+        if (validarNumero(unidades)) {
+            precioUnitario = pedirPrecio(MENSAJE_PRECIO);
+            if (validarNumero(precioUnitario)) {
+                ventas += precioUnitario * unidades;
+            }
+        }
+        mensaje = `${MENSAJE_SUBTOTAL} $${ventas}.\n${MENSAJE_CONTINUAR}`;
+    } while(continuar(mensaje))
+
+    return ventas;
+}
+
+function validarNumero(candidato) {
+    return (candidato != null && !isNaN(candidato));
+}
+
+function continuar(mensaje) {
+    const SI = "S";
+    const NO = "N";
+
+    let respuesta = prompt(mensaje).toUpperCase();    
+    while(respuesta != SI && respuesta != NO) {
+        respuesta = prompt(mensaje).toUpperCase();           
+    }
+
+    return (respuesta==SI);
+}
+
+function pedirCantidad (mensaje) {
+    return parseInt(leerNumeroPositivo(mensaje));
+}
+
+function pedirPrecio (mensaje) {
+    return leerNumeroPositivo(mensaje);
+}
+
+function leerNumeroPositivo(mensaje) {
+    let respuesta;
+    let numero;
+
+    do {
+        respuesta = prompt(mensaje);
+
+        if (respuesta == null) {
+            return respuesta;
+        }
+        numero = parseFloat(respuesta);    
+    } while (isNaN(numero) || numero < 0)
+    return numero;
+}
+
+function mostrar(mensaje) {
+    //console.log(mensaje);
+    alert(mensaje);
+}
+
+
+function edadJubilacion() {
+    const SIN_EDAD = "No ingresó edad.";
+    const SIN_GENERO = "No ingresó genero.";
+    const CANCELADO = "Programa cancelado."
+    const MASCULINO = "M";
+    const FEMENINO = "F";
+    const EDAD_MIN = 1;
+    const EDAD_MAX = 120;
+    const EDAD_M = 65;
+    const EDAD_F = 60;
+
+    let califica = "no ";
+    let mensaje = "";
+
+    let genero = pedirGenero(MASCULINO, FEMENINO);
+    if (genero == null) {
+        mensaje = `${SIN_GENERO} ${CANCELADO}`;
+    } else {
+        let edad = pedirEdad(EDAD_MIN, EDAD_MAX);
+        if (edad == null) {
+            mensaje = `${SIN_EDAD} ${CANCELADO}`;
+        } else {
+            if (edad > EDAD_M || (edad > EDAD_F && genero == FEMENINO)) {califica = ""}
+            mensaje = `Ud. ${califica}esta en edad para jubilarse.`;
+        }
+    }
+    mostrar(mensaje);
+}
+
+function pedirGenero(MASCULINO, FEMENINO) {
+    let genero;
+    do {
+        try {
+            genero = prompt("Por favor indique su genero [M / F].").toUpperCase();
+        } catch {
+            genero = null;
+        }
+    } while (genero != MASCULINO && genero != FEMENINO && genero != null)
+    
+    return genero;
+}
+
+function pedirEdad(min, max) {
+    const MENSAJE = "Por favor ingrese su edad."
+    
+    let edad;
+    do {
+        edad = leerNumeroPositivo(MENSAJE);
+        if (edad == null) {
+            return edad;
+        }
+    } while (edad < min || edad > max) 
+
+    return edad;
 }
