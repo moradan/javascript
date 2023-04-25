@@ -79,35 +79,40 @@ function listarPrimos(cantidad) {
     let candidato = 1;
     let listaPrimos = [];
 
-    while(cantidad > 0) {
+    for (let contador = 1; contador <= cantidad; contador++) {
         while(!esPrimo(candidato)) {
             candidato++;
         }
         listaPrimos.push(candidato);
         candidato++;
-        cantidad--;    
     }
 
     return listaPrimos;
 }
 
-function imprimirPrimos(cantidad) {
+function mostrarPrimos(cantidad) {
     let lista = listarPrimos(cantidad);
     console.log(lista.toString());
 }
 
-function esNumeroPerfecto(numero) {
-    let listaDivisores = listarDivisores(numero);
-    let suma = 0;
+function sumarLista(lista) {
+    let total = 0;
 
-    listaDivisores.pop();
-    listaDivisores.forEach((valor) => {
-        suma += valor;
+    lista.forEach((valor) => {
+        total += valor;
     });
 
-    if (numero == suma) {
-        return true;
-    } else {
-        return false;
-    }
+    return total;
+}
+
+// un numero perfecto es aquel que es igual a la suma de todos sus divisores, excluyendo el numero en si.
+function esNumeroPerfecto(numero) {
+    //llistamos todos los divisores de numero  
+    let listaDivisores = listarDivisores(numero);
+    //quitamos el numero propio de la lista de divisores
+    listaDivisores.pop();
+    //sumamos todos los divisores
+    let suma = sumarLista(listaDivisores);
+    //comparamos esa suma con el numero, si la suma es igual el numero es perfecto y se devuelve true.
+    return (suma == numero)
 }

@@ -62,7 +62,7 @@ function tablaMultiplicar() {
 function fizzBuzz() {
     let numero = parseInt(prompt("Ingrese un número natural (no 0)."));
     while(numero < 1) {
-        numero = parseInt(prompt("El número debe ser igualo mayor que 1. Igrese otro número."));
+        numero = parseInt(prompt("El número debe ser igual o mayor que 1. Igrese otro número."));
     }
 
     let mensaje = `Estos son los primeros ${numero} multiplos de 3 excluyendo los multiplos de 5.\n`;
