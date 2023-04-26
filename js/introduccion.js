@@ -1,37 +1,87 @@
 function saludar() {
     let nombre = prompt("Escriba, por favor, su nombre.");
-    alert(`Hola ${nombre}. Bienvenido a este ejercicio.`);
+
+    if (nombre != "" && nombre != null) {
+        alert(`Hola ${nombre}. Bienvenido a este ejercicio.`);
+    } else {
+        alert("No ingresó su nombre. Hasta luego.");
+    }
 }
 
 function opuestoInverso() {
     let numero = parseInt(prompt("Escriba, por favor, un número."));
 
-    alert(`El opuesto de ${numero} es ${-numero}, y el inverso es ${1/numero}.`);
+    if (!isNaN(numero)) {
+        alert(`El opuesto de ${numero} es ${-numero}, y el inverso es ${1/numero}.`);
+    } else {
+        alert("No ingresó un numero. No puedo hacer cálculos sin un número.");
+    }
 }
 
 function promedio() {
-    let nota1 = parseInt(prompt("Escriba, por favor, la nota del primer trimestre (1-10)."));
-    let nota2 = parseInt(prompt("Escriba, por favor, la nota del segundo trimestre (1-10)."));
-    let nota3 = parseInt(prompt("Escriba, por favor, la nota del tercer trimestre (1-10)."));
-    let promedio = (nota1 + nota2 + nota3) / 3;
+    const ERROR = "No ingresó un número, no se puede calcular el promedio.";
 
-    alert(`El promedio del alumno es ${promedio.toFixed(1)}.`);
+    let nota1 = parseInt(prompt("Escriba, por favor, la nota del primer trimestre (1-10)."));
+    if (isNaN(nota1)) {
+        alert(ERROR);
+        return -1;
+    }    
+
+    let nota2 = parseInt(prompt("Escriba, por favor, la nota del segundo trimestre (1-10)."));
+    if (isNaN(nota1)) {
+        alert(ERROR);
+        return -1;
+    }
+
+    let nota3 = parseInt(prompt("Escriba, por favor, la nota del tercer trimestre (1-10)."));
+    if (isNaN(nota1)) {
+        alert(ERROR);
+        return -1;
+    }    
+
+    let promedio = (nota1 + nota2 + nota3) / 3;
+    alert(`El romedio de las tres notas es ${promedio}`);
+    return promedio;
 }
 
 function salario() {
+    const ERROR = "Error. No ingresó un valor o presionó cancelar. Programa finalizado.";
+
     let salarioPorHora = parseInt(prompt("Escriba, por favor, el salario por hora en pesos."));
+    if (isNaN(salarioPorHora)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let horasPorDia = parseInt(prompt("Escriba, por favor, la cantidad de horas diarias que trabaja."));
+    if (isNaN(horasPorDia)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let jornadaCompleta = salarioPorHora * horasPorDia * 5;
     let jornadaMedia = salarioPorHora * horasPorDia / 2;
     let salarioSemanal = jornadaCompleta + jornadaMedia;
 
     alert(`El salario semanal del empleado será ${salarioSemanal}`);
+    return salarioSemanal;
 }
 
 function intercambiar() {
+    const ERROR = "No ingresó un numero. Programa terminado.";
+
     let numero1 = parseInt(prompt("Escriba, por favor, un número."));
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let numero2 = parseInt(prompt("Escriba, por favor, un segundo número."));
-    
+     if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+   
     alert(`Ud. ingresó los siguientes números A: ${numero1}; y B: ${numero2}`);
     
     let aux = numero1;
