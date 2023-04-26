@@ -225,10 +225,6 @@ function capital() {
     }
 
     let capital3 = parseInt(prompt("Ingrese el capital aportado por ese inversor."));
-    if (isNaN(numero1)) {
-        alert(ERROR);
-        return -1;
-    }
 
     let capitalTotal = capital1 + capital2 + capital3;
     let aporte1 = (capital1 / capitalTotal) * 100;
