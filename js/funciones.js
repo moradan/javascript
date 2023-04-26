@@ -175,7 +175,14 @@ function continuar(mensaje) {
 }
 
 function pedirCantidad (mensaje) {
-    return parseInt(leerNumeroPositivo(mensaje));
+    let respuesta = leerNumeroPositivo(mensaje);
+
+    if (respuesta == null) {
+        return respuesta;
+    }
+    let cantidad = parseInt(respuesta);
+
+    return cantidad;
 }
 
 function pedirPrecio (mensaje) {
@@ -201,7 +208,6 @@ function mostrar(mensaje) {
     //console.log(mensaje);
     alert(mensaje);
 }
-
 
 function edadJubilacion() {
     const SIN_EDAD = "No ingresó edad.";
@@ -257,4 +263,60 @@ function pedirEdad(min, max) {
     } while (edad < min || edad > max) 
 
     return edad;
+}
+
+function laCuenta() {
+    let items = ingresarItems();
+    let cuenta = 0;
+
+    if (items.length > 0) {
+        cuenta = sumar(items).toFixed(2);
+        mensaje = `La cuenta es de $${cuenta}.`
+    } else {
+        mensaje = "La cuenta esta vacia.";
+    }
+
+    mostrar(mensaje);
+}
+
+function sumar(lista) {
+    let suma = 0;
+    lista.forEach((valor) => {
+        if(!isNaN(valor)){
+            suma += valor;
+        }
+    });
+    return suma;
+}
+
+function ingresarItems() {
+    const MENSAJE_CERRAR = "Desea seguir ingresando datos? [S/N]";
+    const MENSAJE_PRECIO = "Ingrese el precio unitario.";
+    const MENSAJE_CANTIDAD = "Ingrese la cantidad de unidades.";
+
+    let lista = [];
+    let cantidad = 0;
+    let precioUnitario = 0;
+    let monto = 0;
+
+    do {
+        do {
+            cantidad = pedirCantidad(MENSAJE_CANTIDAD);
+            if (cantidad == null && !continuar(MENSAJE_CERRAR)) {
+                return lista;
+            } 
+        } while(cantidad == null)
+        
+        do {
+            precioUnitario = pedirPrecio(MENSAJE_PRECIO);
+            if (precioUnitario == null && !continuar(MENSAJE_CERRAR)) {
+                return lista;
+            }
+        } while(precioUnitario == null)
+        
+        monto = cantidad * precioUnitario;
+        lista.push(monto);
+    } while (continuar(MENSAJE_CERRAR))
+
+    return lista;
 }
