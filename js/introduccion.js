@@ -92,20 +92,50 @@ function intercambiar() {
 }
 
 function comision() {
+    const ERROR = "No ingresó un numero. Programa terminado.";
+
     let precioPorUnidad = parseFloat(prompt(`Ingrese, por favor, el valor en a$r del articulo vendido.`));
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let cantidadVendida = parseInt(prompt(`Ingrese, por favor, la cantidad de ese artículo que fue vendido.`));
-    const salarioFijo = 14000;
-    const comisionPorVentas = 0.16;
-    let comision = cantidadVendida * precioPorUnidad * comisionPorVentas;
-    let salarioTotal = salarioFijo + comision;
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
+    const SALARIO_FIJO = 14000;
+    const COMISION_POR_VENTA = 0.16;
+    let comision = cantidadVendida * precioPorUnidad * COMISION_POR_VENTA;
+    let salarioTotal = SALARIO_FIJO + comision;
 
     alert(`El salario neto de este emplelado es ${salarioTotal}.`);
+    return salarioTotal;
 }
 
 function superficiePerimetro() {
+    const ERROR = "No ingresó un numero. Programa terminado.";
+    
     let ancho = parseInt(prompt(`Por favor, ingrese el ancho del terreno en metros.`));
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let largo = parseInt(prompt(`Ingrese, por favor, el largo del terreno en metros.`));
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let precioPorM2 = parseFloat(prompt(`Ingrese, por favor, el valor en pesos del metro cuadrado.`));
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let superficie = ancho * largo;
     let valorTerreno = precioPorM2 * superficie;
     let perimetro = (2 * ancho) + (2 * largo);
@@ -115,8 +145,19 @@ function superficiePerimetro() {
 }
 
 function aritmeticas () {
+    const ERROR = "No ingresó un numero. Programa terminado.";
+    
     let numero1 = parseInt(prompt("Ingrese, por favor, un número."));
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let numero2 = parseInt(prompt("Ingrese, por favor, otro número más."));
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
 
     let suma = numero1 + numero2;
     let diferencia = numero1 - numero2;
@@ -127,20 +168,67 @@ function aritmeticas () {
 }
 
 function trigonometria() {
+    const ERROR = "No ingresó un numero. Programa terminado.";
+    
     let alfa = parseInt(prompt("Ingrese el valor en grados de un ángulo interno de un triángulo."));
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let beta = parseInt(prompt("Ingrese, por favor, el valor de otro ángulo interno."));
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let gama = 180 - (alfa + beta);
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
 
     alert(`El ángulo opuesto mide: ${gama}°.`);
 }
 
 function capital() {
+    const ERROR = "No ingresó un numero. Programa terminado.";
+
     let inversor1 = prompt("Ingrese, por favor, el nombre del primer inversor.");
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let capital1 = parseInt(prompt ("Ingrese el capital aportado por ese inversor."));   
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let inversor2 = prompt("Ingrese, por favor, el nombre del segundo inversor.");
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let capital2 = parseInt(prompt ("Ingrese el capital aportado por ese inversor."));
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let inversor3 = prompt("Ingrese, por favor, el nombre del último inversor.");
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let capital3 = parseInt(prompt("Ingrese el capital aportado por ese inversor."));
+    if (isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
 
     let capitalTotal = capital1 + capital2 + capital3;
     let aporte1 = (capital1 / capitalTotal) * 100;
