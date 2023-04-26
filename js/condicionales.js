@@ -1,9 +1,14 @@
 function esPar() {
+    const ERROR = "No ingresó un número. No se puede evaluar paridad.";
+
     let numero = parseInt(prompt("Ingrese, por favor, un numero."));
-    const isEven = num => num % 2 === 0;
+    if (isNaN(numero)) {
+        alert(ERROR);
+        return -1;
+    }
     
     let esONo = "no es";
-    if (isEven(numero)) {
+    if (numero % 2 == 0) {
         esONo = "es";
     }
     const mensaje = `El número ${numero} ${esONo} par.`;
@@ -12,10 +17,21 @@ function esPar() {
 }
 
 function cupo() {
+    const ERROR = "No ingresó un número válido. Terminando el programa.";
+
     let cantidadInscriptos = parseInt(prompt("Ingrese la cantidad de inscriptos: "));
+    if (isNaN(cantidadInscriptos)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let cantidadAsientos = parseInt(prompt("Ingrese, por favor, la cantidad de asientos disponibles: "));
+    if (isNaN(cantidadInscriptos)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let mensaje = "Los asientos alcanzan para todos los inscriptos";
-    
     const faltante = cantidadInscriptos - cantidadAsientos;
     if (faltante > 0) {
         mensaje = `Faltan ${faltante} asientos para acomodar a todos los inscriptos.`;
