@@ -294,13 +294,29 @@ function divisible () {
 }
 
 function trigonometria() {
+    const ERROR = "No ingresó suficientes datos. Programa terminado.";
+
     let lado1 = parseInt(prompt("Ingrese la longitud del primer lado del triangulo."));
+    if (isNaN(lado1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let lado2 = parseInt(prompt("Ingrese la longitud del segundo lado."));
+    if (isNaN(numero2)){
+        alert(ERROR);
+        return -1;
+    }
+
     let lado3 = parseInt(prompt("Ingrese la longitud del último lado."));
+    if (isNaN(numero3)){
+        alert(ERROR);
+        return -1;
+    }
 
     let mensaje;
 
-    if (lado3 <= Math.abs(lado1 - lado2) || lado3 >= lado1 + lado2) {
+    if (lado1 <= lado2 + lado2 || lado3 >= lado1 + lado2) {
         mensaje = "no conforman un triangulo válido.";
     } else {
         let tipo;
@@ -318,7 +334,14 @@ function trigonometria() {
 }
 
 function meses() {
+    const ERROR = "No ingresó un número válido.";
+
     let numero = parseInt(prompt("Por favor ingrese un numero del 1 al 12."));
+    if (isNaN(numero) || numero < 1 || numero > 12) {
+        alert(ERROR);
+        return -1;
+    }
+
     let mensaje = `El mes número ${numero} es el mes de `;
 
     switch (numero) {
@@ -359,49 +382,71 @@ function meses() {
             mensaje += "diciembre.";
             break;
         default:
-            mensaje = `El número ${numero} no corresponde a un mes del año.`;
     }
 
     alert(mensaje);
 }
 
 function romanos() {
-    let romano = prompt("Por favor ingrese una letra que corresponda a un numero romano: ").toUpperCase();
-    let enunciado = `La letra ${romano} `;
-    let conclusion =  "corresponde al número romano ";
+    const ERROR = "Decidio cancelar el programa.";
+
+    let respuesta = prompt("Por favor ingrese una letra que corresponda a un numero romano: ");
+    if (respuesta == null){
+        alert(ERROR);
+        return -1;
+    }
+
+    let romano = respuesta.toUpperCase();
+    let enunciado = `La letra ${romano} corresponde al número romano`;
+    let conclusion =  "";
 
     switch (romano) {
         case "I":
-            conclusion += "1";
+            conclusion = "1";
             break;
         case "V":
-            conclusion += "5";
+            conclusion = "5";
             break;
         case "X":
-            conclusion += "10";
+            conclusion = "10";
             break;
         case "L":
-            conclusion += "50";
+            conclusion = "50";
             break;
         case "C":
-            conclusion += "100";
+            conclusion = "100";
             break;
         case "D":
-            conclusion += "500";
+            conclusion = "500";
             break;
         case "M":
-            conclusion += "1000";
+            conclusion = "1000";
             break;
         default:
             conclusion = "no corresponde a un numero romano.";
     }
 
-    alert(enunciado + conclusion);
+    alert(`${enunciado} ${conclusion}.`);
 }
 
 function zodiaco() {
-    let mes = prompt("Ingrese el mes de su cumpleaños.").toLowerCase();
+    const ERROR = "No ingresó un dato valido. Programa terminado.";
+    
+    let respuesta = prompt("Ingrese el mes de su cumpleaños.");
+    let mes;
+    if (respuesta == null || respuesta == "") {
+        alert(ERROR);
+        return -1;
+    } else if (isNaN(respuesta)) {
+        mes = respuesta.toUpperCase();
+    }
+ 
     let dia = parseInt(prompt("Ingrese el día de su cumpleaños."));
+    if (isNaN(dia)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let signo = "";
     let mensaje = "";
     
