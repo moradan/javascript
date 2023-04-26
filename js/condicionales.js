@@ -26,7 +26,7 @@ function cupo() {
     }
 
     let cantidadAsientos = parseInt(prompt("Ingrese, por favor, la cantidad de asientos disponibles: "));
-    if (isNaN(cantidadInscriptos)) {
+    if (isNaN(cantidadAsientos)) {
         alert(ERROR);
         return -1;
     }
@@ -41,10 +41,21 @@ function cupo() {
 }
 
 function mayorQue() {
+    const ERROR = "No ingresó un número válido. Programa terminado.";
+
     let numero1 = parseInt(prompt("Ingrese, por favor, un número."));
+    if(isNaN(numero1)){
+        alert(ERROR);
+        return -1;
+    }
+
     let numero2 = parseInt(prompt("Ingrese un número más."));
+    if(isNaN(numero2)){
+        alert(ERROR);
+        return -1;
+    }
     
-    let enunciado = `Entre el ${numero1} y el ${numero2}, `;
+    const enunciado = `Entre el ${numero1} y el ${numero2}, `;
     let conclusion = "";
     
     if (numero2 > numero1) {
@@ -61,11 +72,27 @@ function mayorQue() {
 }
 
 function maximo() {
+    const ERROR = "No ingresó un número válido. Programa terminado.";
+
     let numero1 = parseInt(prompt("Ingrese, por favor, un número: "));
+    if(isNaN(numero1)) {
+        alert(ERROR);
+        return -1;
+    }
+
     let numero2 = parseInt(prompt("Ingrese un número más: "));
+    if(isNaN(numero2)) {
+        alert(ERROR);
+        return -1;
+    }
+   
     let numero3 = parseInt(prompt("Ingrese un último número: "));
-    
-    let enunciado = `De esta lista: ${numero1}, ${numero2}, ${numero3};`;
+    if(isNaN(numero3)) {
+        alert(ERROR);
+        return -1;
+    }
+   
+    const enunciado = `De esta lista: ${numero1}, ${numero2}, ${numero3};`;
     let conclusion = "";
     let intro = " el mayor es el ";
     
@@ -100,6 +127,7 @@ function maximo() {
 }
 
 function jubilatorio () {
+    const ERROR = "No ingresó su edad. Terminando el programa.";
     const EDAD_M = 65;
     const EDAD_F = 60;
     const EDAD_MIN = 1;
@@ -108,15 +136,18 @@ function jubilatorio () {
     const GENERO_INVALIDO = "El genero no es válido."
     
     let edad = parseInt(prompt(`Por favor, ingrese su edad (entre ${EDAD_MIN} y ${EDAD_MAX} años).`));
-    
-    if (edad < EDAD_MIN || edad > EDAD_MAX) {
+    if (isNaN(edad)) {
+        alert(ERROR);
+        return -1;
+    } else if (edad < EDAD_MIN || edad > EDAD_MAX) {
         alert(EDAD_INVALIDA);
-    }
-    else {
+        return -1;
+    } else {
         let genero = prompt("Indique, por favor, su genero (m - masculino; f - femenino).").toUpperCase();
         let califica = "no";
         if (genero!="M" && genero!="F") {
             alert(GENERO_INVALIDO);
+            return -1;
         }
         else if (edad >= EDAD_M || (edad >= EDAD_F && genero == "F")) {
             califica = "";
@@ -127,9 +158,20 @@ function jubilatorio () {
 }
 
 function aporte() {
-    let edad = parseInt(prompt("Por favor, indique su edad."));
-    let sueldo = parseInt(prompt("Cual es su sueldo en a$r."));
+    const ERROR = "No ingresó un dato válido. Programa terminado.";
     
+    let edad = parseInt(prompt("Por favor, indique su edad."));
+    if (isNaN(edad)) {
+        alert(ERROR);
+        return -1;
+    }
+    
+    let sueldo = parseInt(prompt("Cual es su sueldo en a$r."));
+    if (isNaN(sueldo)) {
+        alert(ERROR);
+        return -1;
+    }
+
     const CATEGORIA1 = 20000;
     const CATEGORIA2 = 30000;
     const CATEGORIA3 = 40000;
@@ -162,9 +204,24 @@ function aporte() {
 }
 
 function ordenar() {
+    const ERROR = "No ingresó un número válido. Programa terminado.";
+
     let numero1 = parseInt(prompt("Ingrese un número."));
+    if (isNaN(numero1)){
+        alert(ERROR);
+        return -1;
+    }
     let numero2 = parseInt(prompt("Ingrese un segundo número."));
+    if (isNaN(numero2)){
+        alert(ERROR);
+        return -1;
+    }
+
     let numero3 = parseInt(prompt("Ingrese un último número."));
+    if (isNaN(numero3)){
+        alert(ERROR);
+        return -1;
+    }
 
     let orden1;
     let orden2;
@@ -203,8 +260,18 @@ function ordenar() {
 }
 
 function divisible () {
+    const ERROR = "No ingresó un número válido. Programa terminado.";
+    
     let numero1 = parseInt(prompt("Por favor, ingrese un número."));
+    if (isNaN(numero1)){
+        alert(ERROR);
+        return -1;
+    }
     let numero2 = parseInt(prompt("Ingrese, por favor, un segundo número."));
+    if (isNaN(numero2)){
+        alert(ERROR);
+        return -1;
+    }
 
     let orden1;
     let orden2;
