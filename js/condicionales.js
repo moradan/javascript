@@ -438,7 +438,7 @@ function zodiaco() {
         alert(ERROR);
         return -1;
     } else if (isNaN(respuesta)) {
-        mes = respuesta.toUpperCase();
+        mes = respuesta;
     }
  
     let dia = parseInt(prompt("Ingrese el día de su cumpleaños."));
