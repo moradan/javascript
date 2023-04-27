@@ -127,7 +127,7 @@ function maximo() {
 }
 
 function jubilatorio () {
-    const ERROR = "No ingresó su edad. Terminando el programa.";
+    const CANCELAR = "Eligió cancelar el programa."
     const EDAD_M = 65;
     const EDAD_F = 60;
     const EDAD_MIN = 1;
@@ -137,13 +137,18 @@ function jubilatorio () {
     
     let edad = parseInt(prompt(`Por favor, ingrese su edad (entre ${EDAD_MIN} y ${EDAD_MAX} años).`));
     if (isNaN(edad)) {
-        alert(ERROR);
+        alert(CANCELAR);
         return -1;
     } else if (edad < EDAD_MIN || edad > EDAD_MAX) {
         alert(EDAD_INVALIDA);
         return -1;
     } else {
-        let genero = prompt("Indique, por favor, su genero (m - masculino; f - femenino).").toUpperCase();
+        let respuesta = prompt("Indique, por favor, su genero (m - masculino; f - femenino).");
+        if (respuesta == null) {
+            alert(CANCELAR);
+            return -1;
+        }
+        let genero = respuesta.toUpperCase();
         let califica = "no";
         if (genero!="M" && genero!="F") {
             alert(GENERO_INVALIDO);
