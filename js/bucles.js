@@ -189,10 +189,19 @@ function estaturaPromedio() {
 }
 
 function busqueda() {
+    const CANCELAR = "Programa cancelado.";
+
     let cantidad = parseInt(prompt("Ingrese la cantidad numeros para listar."));
+    if (isNaN(cantidad)) {
+        alert(CANCELAR);
+        return -1;
+    }
     while (cantidad < 0 ) {
         cantidad = parseInt(prompt("La cantidad no puede ser negativa."));
-    }
+        if (isNaN(cantidad)) {
+            alert(CANCELAR);
+            return -1;
+        }}
 
     let lista = [];
     let ordenMayor = 0;
