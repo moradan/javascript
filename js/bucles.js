@@ -211,6 +211,10 @@ function busqueda() {
     } else {
         for (let i = 0; i < cantidad; i++) {
             lista[i] = parseInt(prompt("Ingrese un numero entero."));        
+            if (isNaN(lista[i])) {
+                alert(CANCELAR);
+                return -1;
+            }
             if (lista[ordenMayor] < lista[i]) {
                 ordenMayor = i;
             }
