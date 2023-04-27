@@ -308,20 +308,20 @@ function trigonometria() {
     }
 
     let lado2 = parseInt(prompt("Ingrese la longitud del segundo lado."));
-    if (isNaN(numero2)){
+    if (isNaN(lado2)){
         alert(ERROR);
         return -1;
     }
 
     let lado3 = parseInt(prompt("Ingrese la longitud del último lado."));
-    if (isNaN(numero3)){
+    if (isNaN(lado3)){
         alert(ERROR);
         return -1;
     }
 
     let mensaje;
 
-    if (lado1 <= lado2 + lado2 || lado3 >= lado1 + lado2) {
+    if (lado1 >= lado2 + lado3 || lado2 >= lado1 + lado3) {
         mensaje = "no conforman un triangulo válido.";
     } else {
         let tipo;
@@ -347,63 +347,65 @@ function meses() {
         return -1;
     }
 
-    let mensaje = `El mes número ${numero} es el mes de `;
+    let mensaje = `El mes número ${numero} es el mes de`;
+    let nombreMes = "";
 
     switch (numero) {
         case 1:
-            mensaje += "enero.";
+            nombreMes = "enero.";
             break;
         case 2:
-            mensaje += "febrero.";
+            nombreMes = "febrero.";
             break;
         case 3:
-            mensaje += "marzo.";
+            nombreMes = "marzo.";
             break;
         case 4:
-            mensaje += "abril.";
+            nombreMes = "abril.";
             break;
         case 5:
-            mensaje += "mayo.";
+            nombreMes = "mayo.";
             break;
         case 6:
-            mensaje += "junio.";
+            nombreMes = "junio.";
             break;
         case 7:
-            mensaje += "julio.";
+            nombreMes = "julio.";
             break;
         case 8:
-            mensaje += "agosto.";
+            nombreMes = "agosto.";
             break;
         case 9:
-            mensaje += "septiembre.";
+            nombreMes = "septiembre.";
             break;
         case 10:
-            mensaje += "octubre.";
+            nombreMes = "octubre.";
             break;
         case 11:
-            mensaje += "noviembre.";
+            nombreMes = "noviembre.";
             break;
         case 12:
-            mensaje += "diciembre.";
+            nombreMes = "diciembre.";
             break;
         default:
     }
 
-    alert(mensaje);
+    alert(`${mensaje} ${nombreMes}`);
 }
 
 function romanos() {
-    const ERROR = "Decidio cancelar el programa.";
+    const CANCELAR = "Decidio cancelar el programa.";
+    const NO_CORRESPONDE = "no corresponde a ningún número romano.";
+    const CORRESPONDE = "corresponde al número romano";
 
     let respuesta = prompt("Por favor ingrese una letra que corresponda a un numero romano: ");
     if (respuesta == null){
-        alert(ERROR);
+        alert(CANCELAR);
         return -1;
     }
-
+    
     let romano = respuesta.toUpperCase();
-    let enunciado = `La letra ${romano} corresponde al número romano`;
-    let conclusion =  "";
+    const ENUNCIADO = `El caracter ${romano}`;
 
     switch (romano) {
         case "I":
@@ -428,10 +430,11 @@ function romanos() {
             conclusion = "1000";
             break;
         default:
-            conclusion = "no corresponde a un numero romano.";
+            alert(`${ENUNCIADO} ${NO_CORRESPONDE}`);
+            return -1;
     }
 
-    alert(`${enunciado} ${conclusion}.`);
+    alert(`${ENUNCIADO} ${CORRESPONDE} ${conclusion}.`);
 }
 
 function zodiaco() {
@@ -442,7 +445,7 @@ function zodiaco() {
     if (respuesta == null || respuesta == "") {
         alert(ERROR);
         return -1;
-    } else if (isNaN(respuesta)) {
+    } else {
         mes = respuesta;
     }
  
