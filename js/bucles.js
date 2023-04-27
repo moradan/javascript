@@ -97,13 +97,22 @@ function fizzBuzz() {
 }
 
 function edadMultiplos() {
+    const CANCELAR = "Programa cancelado.";
     let edades = [];
 
     for (let i = 1; i <= 5; i++) {
         edades[i] = parseInt(prompt(`${i}. Ingrese una edad`));
+        if (isNaN(edades[i])) {
+            alert(CANCELAR);
+            return -1;
+        }
 
         while(edad < 0) {
             edades[i] = parseInt(prompt(`${edades[i]} no es una edad valida. Ingrese una edad.`));
+            if (isNaN(edades[i])) {
+                alert(CANCELAR);
+                return -1;
+            }
         }
         
         let cantidad = 0;
@@ -119,7 +128,7 @@ function ventasAcumuladas() {
     const CANCELAR = "Cancelando el programa.";
     let cantidadVentas = parseInt(prompt("Ingrese la cantidad de ventas que hizo el vendedor."));
     if (isNaN(cantidadVentas)) {
-        
+
     }
 
     if (cantidadVentas > 0) {
