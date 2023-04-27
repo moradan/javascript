@@ -16,8 +16,19 @@ function unoAlCien() {
 }
 
 function secuencia() {
+    const CANCELAR = "Cancelando el programa.";
+
     let numero1 = parseInt(prompt("Ingrese un número:"));
+    if (isNaN(numero1)) {
+        alert(CANCELAR);
+        return -1;
+    }
+
     let numero2 = parseInt(prompt("Ingrese otro número:"));
+    if (isNaN(numero2)) {
+        alert(CANCELAR);
+        return -1;
+    }
 
     let orden1, orden2;
 
@@ -60,7 +71,14 @@ function tablaMultiplicar() {
 }
 
 function fizzBuzz() {
+    const CANCELAR = "Cancelando el programa.";
+
     let numero = parseInt(prompt("Ingrese un número natural (no 0)."));
+    if (isNaN(numero)) {
+        alert(CANCELAR);
+        return -1;
+    }
+
     while(numero < 1) {
         numero = parseInt(prompt("El número debe ser igual o mayor que 1. Igrese otro número."));
     }
@@ -76,7 +94,6 @@ function fizzBuzz() {
     }
     
     alert(mensaje);
-
 }
 
 function edadMultiplos() {
@@ -99,8 +116,12 @@ function edadMultiplos() {
 }
 
 function ventasAcumuladas() {
+    const CANCELAR = "Cancelando el programa.";
     let cantidadVentas = parseInt(prompt("Ingrese la cantidad de ventas que hizo el vendedor."));
-    
+    if (isNaN(cantidadVentas)) {
+        
+    }
+
     if (cantidadVentas > 0) {
             let ventasAcumulado = 0;
             let ventaActual = 0;
