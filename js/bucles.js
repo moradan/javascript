@@ -149,10 +149,20 @@ function ventasAcumuladas() {
 }
 
 function estaturaPromedio() {
+    const CANCELAR = "Programa cancelado.";
+
     let cantidadJugadores = parseInt(prompt("Ingrese la cantidad de jugadores en el equipo."));
+    if (isNaN(cantidadJugadores)) {
+        alert(CANCELAR);
+        return -1;
+    }
+
     while (cantidadJugadores < 0) {
         cantidadJugadores = parseInt(prompt("La cantidad de jugadores no puede ser negativa."));
-    }
+        if (isNaN(cantidadJugadores)) {
+        alert(CANCELAR);
+        return -1;
+    }}
 
     let estaturaAcumulado = 0;
     let estaturaActual= 0;
@@ -161,14 +171,21 @@ function estaturaPromedio() {
     } else {
         for (let i = 0; i < cantidadJugadores; i++) {
             estaturaActual = parseFloat(prompt(`Ingrese la estatura en metros del jugador #${i + 1}:`));
+            if (isNaN(estaturaActual)) {
+                alert(CANCELAR);
+                return -1;
+            }
+
             while (estaturaActual < 0) {
                 estaturaActual = parseFloat(prompt(`La estatura no puede ser negativa. Cual es la estatura del jugador #${i + 1}:`));
-            }
+                if (isNaN(estaturaActual)) {
+                    alert(CANCELAR);
+                    return -1;
+                }}
             estaturaAcumulado += estaturaActual;
         }
         alert(`La estatura promedio del equipo es de ${(estaturaAcumulado / cantidadJugadores).toFixed(2)}mts.`);
     }
-
 }
 
 function busqueda() {
