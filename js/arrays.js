@@ -1,17 +1,25 @@
+// Constantes para todos los ejercicios
+const CANCELADO = "No ingresó un dato válido o bien presionó cancelar. Programa terminado.";
+const CANTIDAD_NUMEROS = 10;
+const CANTIDAD_CARACTERES = 9;
+
 // funciones para usar en todos los ejercicios
+// muestra informacion en la consola
 function mostrar(mensaje) {
     console.log(mensaje);
 }
 
+// abre un dialogo de alerta con un mensaje
 function avisar(mensaje) {
     alert(mensaje);
 }
 
-function continuar() {
+// pregunta al usuario si desea continuar, devuelve true en caso afirmativo, false de otro modo. El mensaje tiene que estar redactado de modo que el usuario pueda contestar S por si o N por no sin lugar a confunsión.
+function continuar(mensaje) {
     let continuar;
 
     do {
-        let respuesta = prompt("Desea continuar? [S/N]");
+        let respuesta = prompt(`${mensaje} [S/N]`);
         if (respuesta == null) {
             return false;
         } else {
@@ -22,16 +30,12 @@ function continuar() {
     return (continuar == "S");
 }
 
-// Constantes para todos los ejercicios
-const CANCELADO = "No ingresó un dato válido o bien presionó cancelar. Programa terminado.";
-const CANTIDAD_NUMEROS = 10;
-const CANTIDAD_CARACTERES = 9;
 
+
+// pide una lista de numeros, calcula el promedio, y luego muestra ese promedio y lista los numero por arriba del promedio.
 function arribaDelPromedio () {
-    const CANCELADO = "Programa cancelado.";
-
     let numeros = [];
-    numeros = pedirNumeros();
+    numeros = pedirNumeros(CANTIDAD_NUMEROS);
     if(numeros == null) {
         avisar(CANCELADO);
         return -1;
@@ -48,17 +52,22 @@ function arribaDelPromedio () {
     }
 }
 
-function pedirNumeros() {
+// pide una cantidad dada de numeros al usuario, devuelve un array no vacio con los numeros ingresados. Si el usuario, en cualquier momento, ingresa un dato que no es un número o preciona cancelar la función devuelve null
+function pedirNumeros(cantidad) {
     let numeros = [];
     
-    for (let i = 0; i < CANTIDAD_NUMEROS; i++) {
-        let respuesta = parseFloat(prompt("Ingrese un numero."));
+    for (let i = 0; i < cantidad; i++) {
+        let respuesta = parseFloat(prompt(`Ingrese un numero (${i} de ${cantidad}).`));
         if (isNaN(respuesta)) {
-            avisar(CANCELADO);
             return null;
         } else {
             numeros.push(respuesta);
         }
     }
     return numeros;
+}
+
+// recibe un array de numeros, calcula el promedio y lo devuelve
+function calcularPromedio(numeros) {
+
 }
