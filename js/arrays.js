@@ -1,3 +1,4 @@
+// funciones para usar en todos los ejercicios
 function mostrar(mensaje) {
     console.log(mensaje);
 }
@@ -21,13 +22,18 @@ function continuar() {
     return (continuar == "S");
 }
 
+// Constantes para todos los ejercicios
+const CANCELADO = "No ingresó un dato válido o bien presionó cancelar. Programa terminado.";
+const CANTIDAD_NUMEROS = 10;
+const CANTIDAD_CARACTERES = 9;
+
 function arribaDelPromedio () {
     const CANCELADO = "Programa cancelado.";
 
     let numeros = [];
     numeros = pedirNumeros();
     if(numeros == null) {
-        mostrar(CANCELADO);
+        avisar(CANCELADO);
         return -1;
     }
 
