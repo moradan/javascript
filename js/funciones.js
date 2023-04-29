@@ -41,7 +41,19 @@ function sucesion(a, b) {
 }
 
 function esMultiplo(a, b) {
-    if (a % b == 0 || b % a == 0) {
+    if (a < b) {
+        return false;
+    }
+    
+    if (a == 0) {
+        if (b == 0) {
+            return true;
+        } else {
+            return false;
+        }
+    } else if (b == 0) {
+        return false;
+    } else if (a % b == 0) {
         return true;
     } else {
         return false;
