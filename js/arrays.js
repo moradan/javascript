@@ -127,3 +127,21 @@ function multiplosDe(lista, numero) {
         return multiplos;
     }
 }
+
+// ejercicio que pide 10 numeros, calcula el maximo, muestra ese maximo e indica cuantas veces fue ingresado
+function frecuenciaDelMaximo () {
+    let numeros = [];
+    numeros = pedirNumeros(CANTIDAD_NUMEROS);
+    if(numeros == null) {
+        avisar(CANCELADO);
+        return -1;
+    }
+
+    // en un contexto diferente debería validar que máximo no esté undefined, sin embargo en este algoritmo no es necesario. buscarMaximo siempre devuelve el número máximo contenido en el array de números, y devuelve null si el array no contiene ningún número, si el array es null o si el array está vacío. Acá el array es la variable numeros y no puede ser null porque ese caso ya está contemplado en su validación, y no puede contener caracteres no numéricos ni estar vaciós porque lo estamos obteniendo a traves de la funcion pedirNumeros que devuelve null en ambos casos.
+    let maximo = buscarMaximo(numeros);
+    let cantidad = calcularFrecuencia(maximo, numeros);
+
+    mostrar(`El máximo número de la lista es el ${maximo}, y fue ingresado ${cantidad} veces.`);
+    return cantidad;
+}
+

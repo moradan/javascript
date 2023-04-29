@@ -44,7 +44,7 @@ function esMultiplo(a, b) {
     if (a < b) {
         return false;
     }
-    
+
     if (a == 0) {
         if (b == 0) {
             return true;
@@ -331,4 +331,43 @@ function ingresarItems() {
     } while (continuar(MENSAJE_CERRAR))
 
     return lista;
+}
+
+function buscarMaximo(arrayDeNumeros) {
+    let maximo; 
+
+    if (arrayDeNumeros == null || arrayDeNumeros.length == 0) {
+        return null;
+    } else {
+        for (const elemento of arrayDeNumeros) {
+            if (!isNaN(elemento)) {
+                if (maximo == undefined) {
+                    maximo = elemento;
+                } else if (elemento >= maximo) {
+                    maximo = elemento;
+                }
+            }
+        }
+        if (maximo == undefined) {
+            return null;
+        } else {
+            return maximo;
+        }
+    }
+}
+
+function calcularFrecuencia(elemento, lista) {
+    let frecuencia = 0;
+
+    if (!lista || lista.length == 0 || (!elemento && elemento != 0)) {
+        return null;
+    } else {
+        for (const candidato of lista) {
+            if (elemento == candidato) {
+                frecuencia++;
+            }
+        }
+    }
+
+    return frecuencia;
 }
