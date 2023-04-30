@@ -2,6 +2,7 @@
 const CANCELADO = "No ingresó un dato válido o bien presionó cancelar. Programa terminado.";
 const CANTIDAD_NUMEROS = 10;
 const CANTIDAD_CARACTERES = 9;
+const CADENA_VACIA = "";
 
 // funciones para usar en todos los ejercicios
 // muestra informacion en la consola
@@ -275,6 +276,29 @@ function esPalindromo(array) {
 /***************************************************************************************************** */
 // ejercicio 8 toma un array y muestra sus elementos sin repetir elementos
 function mostrarSinRepetidos() {
-    
+    try {
+        let caracteres = pedirCaracteres(CANTIDAD_CARACTERES);
+        let caracteresUnicos = sinRepetidos(caracteres);
+        mostrar("Los siguientes son los caracteres ingresados, sin repetir.");
+        mostrarArray(caracteresUnicos);
+    } catch {
+        avisar(CANCELADO);
+        return -1;
+    }
 }
 
+function sinRepetidos(array) {
+    let unicos = [];
+    
+    for (const elemento of array) {
+        if (!unicos.includes(elemento)){
+            unicos.push(elemento);
+        }
+    }
+
+    return unicos;
+}
+
+
+/***************************************************************************************************** */
+// ejercicio 9 lee del usuario 2 vectores de longitud indefinida. Ejecuta 4 operaciones de conjuntos, union, interseccion, diferencia y 
