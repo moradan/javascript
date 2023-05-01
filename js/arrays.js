@@ -332,7 +332,7 @@ function pedirVectores(instrucciones, cantidad, caracterSeparador) {
     let vectorResultante = [];
 
     for (let contador = 0; contador < cantidad; contador++) {
-        let vector = pedirVector(`${instrucciones}\nConjunto ${contador + 1} de ${cantidad}]`, caracterSeparador);
+        let vector = pedirVector(`${instrucciones}\nConjunto ${contador + 1} de ${cantidad}`, caracterSeparador);
         vectorResultante.push(vector);
     }
     
@@ -346,6 +346,7 @@ function pedirVector(instrucciones, caracterSeprarador) {
     do {
         respuesta = prompt(instrucciones);
         if (respuesta == null) {
+            console.log("respuesta dio null");
             throw "Se presiono cancelar.";
         } else {
             vector.push(respuesta);
@@ -353,6 +354,7 @@ function pedirVector(instrucciones, caracterSeprarador) {
     } while(respuesta != caracterSeprarador)
 
     // La siguiente línea elimina el último elemento del vector. Cuando el usuario ingresa una cadena vacía para concluir el vector actual, esa cadena vacía se agrega como último elemento del vector andtes de salir del bucle, pero no debería formar parte del vector.
+    console.log("Extraer el ultimo elemento");
     respuesta.pop();
     return vector;
 }
