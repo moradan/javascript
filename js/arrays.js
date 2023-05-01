@@ -352,3 +352,27 @@ function pedirVector(instrucciones, caracterSeprarador) {
     respuesta.pop();
     return vector;
 }
+
+function unionDeVectores(vectores) {
+    let vector = [];
+
+    return vector
+}
+
+function interseccionDeVectores(vectores) {
+    let vector = [];
+
+    return vector
+}
+
+function diferenciaDeVectores(vectores) {
+    let vector = [];
+
+    return vector
+}
+
+function diferenciaSimetricaDeVectores(vectores) {
+    let vector = [];
+
+    return vector
+}
