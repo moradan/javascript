@@ -341,11 +341,15 @@ function pedirVectores(instrucciones, cantidad, caracterSeparador) {
 
 function pedirVector(instrucciones, caracterSeprarador) {
     let vector = [];
-    let respuesta = "";
+    let respuesta = caracterSeprarador;
 
     do {
         respuesta = prompt(instrucciones);
-        vector.push(respuesta);
+        if (respuesta == null) {
+            throw "Se presiono cancelar.";
+        } else {
+            vector.push(respuesta);
+        }
     } while(respuesta != caracterSeprarador)
 
     // La siguiente línea elimina el último elemento del vector. Cuando el usuario ingresa una cadena vacía para concluir el vector actual, esa cadena vacía se agrega como último elemento del vector andtes de salir del bucle, pero no debería formar parte del vector.
