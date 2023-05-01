@@ -301,4 +301,54 @@ function sinRepetidos(array) {
 
 
 /***************************************************************************************************** */
-// ejercicio 9 lee del usuario 2 vectores de longitud indefinida. Ejecuta 4 operaciones de conjuntos, union, interseccion, diferencia y 
+// ejercicio 9 lee del usuario 2 vectores de longitud indefinida. Ejecuta 4 operaciones de conjuntos, union, interseccion, diferencia y diferencia simetrica.
+function programaOperacionesConConjuntos() {
+    const INSTRUCCIONES = "Ingrese un conjunto de caracteres de a uno por vez.\nPresione Enter sin ingresar nada para pasar al sieguiente paso.";
+    const MENSAJE_UNION = "La unión entre los dos vectores ingresados es:";
+    const MENSAJE_INTERSECCION = "La intersección de los dos vectores es:";
+    const MENSAJE_DIFERENCIA = "La diferencia del primer vector con el segundo es:";
+    const MENSAJE_DIFERENCIA_SIMETRICA = "La diferencia simetrica entre ambos vectores es:";
+    const CANTIDAD_VECTORES = 2;
+
+    try {
+        let vectores = [];
+        vectores = pedirVectores(INSTRUCCIONES ,CANTIDAD_VECTORES, CADENA_VACIA);
+        let union = unionDeVectores(vectores);
+        let interseccion = interseccionDeVectores(vectores);
+        let diferencia = diferenciaDeVectores(vectores);
+        let diferenciaSimetrica = diferenciaSimetricaDeVectores(vectores);
+        
+        mostrar(`${MENSAJE_UNION}\n ${mostrarArray(union)}\n\n`);
+        mostrar(`${MENSAJE_INTERSECCION}\n ${mostrarArray(interseccion)}\n\n`);
+        mostrar(`${MENSAJE_DIFERENCIA}\n ${mostrarArray(diferencia)}\n\n`);
+        mostrar(`${MENSAJE_DIFERENCIA_SIMETRICA}\n ${mostrarArray(diferenciaSimetrica)}\n\n`);
+    } catch {
+        avisar(CANCELADO);
+        return -1;
+    }
+}
+
+function pedirVectores(instrucciones, cantidad, caracterSeparador) {
+    let vectorResultante = [];
+
+    for (let contador = 0; contador < cantidad; contador++) {
+        let vector = pedirVector(`${instrucciones}\nConjunto ${contador + 1} de ${cantidad}]`, caracterSeparador);
+        vectorResultante.push(vector);
+    }
+    
+    return vectorResultante;
+}
+
+function pedirVector(instrucciones, caracterSeprarador) {
+    let vector = [];
+    let respuesta = "";
+
+    do {
+        respuesta = prompt(instrucciones);
+        vector.push(respuesta);
+    } while(respuesta != caracterSeprarador)
+
+    // La siguiente línea elimina el último elemento del vector. Cuando el usuario ingresa una cadena vacía para concluir el vector actual, esa cadena vacía se agrega como último elemento del vector andtes de salir del bucle, pero no debería formar parte del vector.
+    respuesta.pop();
+    return vector;
+}
