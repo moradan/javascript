@@ -1,5 +1,6 @@
 // Constantes para todos los ejercicios
 const CANCELADO = "No ingresó un dato válido o bien presionó cancelar. Programa terminado.";
+const SIN_TEXTO = "No ingresó texto, no se puede seguir con el programa.";
 const CANTIDAD_NUMEROS = 10;
 const CANTIDAD_CARACTERES = 9;
 const CADENA_VACIA = "";
@@ -424,7 +425,7 @@ function palabrasEntrelazadas() {
     try {
         let cadena = pedirCadena();
         if (cadena == CADENA_VACIA) {
-            avisar("No ingresó texto, programa cancelado.");
+            avisar(SIN_TEXTO);
         }
 
         let subCadena1 = [];
@@ -446,22 +447,39 @@ function palabrasEntrelazadas() {
 }
 
 /***************************************************************************************************** */
-// ejercicio 11, el usuario entra una cadena y se deben contar cuantas vocales contiene la cadena
+// ejercicio 11, el usuario entra una cadena y se deben contar cuantas veces aparece cada vocal
 function contarVocales() {
+    const VOCALES = ['A', 'E', 'I', 'O', 'U'];
+
+    try {
+        let cadena = pedirCadena().toUpperCase();
+        
+        if (cadena == CADENA_VACIA) {
+            avisar(SIN_TEXTO);
+        } else {
+            mostrar("La cadena que ingresó contiene la siguiente cantidad de vocales:");
+            for (const vocal of VOCALES) {
+                let contador = 0;
+                for (const letra of cadena) {
+                    if (letra == vocal) {
+                        contador++;
+                    }
+                }
+                mostrar(`${vocal}: ${contador}`);
+            }
+        }
+    } catch {
+        avisar(CANCELADO);
+    }
+}
+
+/***************************************************************************************************** */
+// ejercicio 12, contar palabras en una cadena
+function contarPalabras(){
     try {
         let cadena = pedirCadena();
-        let cantidadVocales = 0;
-
-        if (cadena.length = 0) {
-            avisar("La cadena esta vacía, por lo tanto no contiene vocales.");
-        } else {
-            for (const caracter of cadena) {
-                if (esVocal(caracter)) {
-                    cantidadVocales++;
-                }
-            }
-    
-            mostrar(`La cadena ingresada:\n${cadena}\nContiene ${cantidadVocales} vocales.`);
+        if (cadena == CADENA_VACIA) {
+            avisar(SIN_TEXTO);
         }
     } catch {
         avisar(CANCELADO);
