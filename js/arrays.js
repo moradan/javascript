@@ -313,16 +313,21 @@ function programaOperacionesConConjuntos() {
     try {
         let vectores = [];
         vectores = pedirVectores(INSTRUCCIONES ,CANTIDAD_VECTORES, CADENA_VACIA);
-        let union = unionDeVectores(vectores);
-        let interseccion = interseccionDeVectores(vectores);
-        let diferencia = diferenciaDeVectores(vectores);
-        let diferenciaSimetrica = diferenciaSimetricaDeVectores(vectores);
+        let union = unionDeVectores(vectores[0], vectores[1]);
+        let interseccion = interseccionDeVectores(vectores[0], vectores[1]);
+        let diferencia = diferenciaDeVectores(vectores[0], vectores[1]);
+        let diferenciaSimetrica = diferenciaSimetricaDeVectores(vectores[0], vectores[1]);
         
-        mostrar(`${MENSAJE_UNION}\n ${mostrarArray(union)}\n\n`);
-        mostrar(`${MENSAJE_INTERSECCION}\n ${mostrarArray(interseccion)}\n\n`);
-        mostrar(`${MENSAJE_DIFERENCIA}\n ${mostrarArray(diferencia)}\n\n`);
-        mostrar(`${MENSAJE_DIFERENCIA_SIMETRICA}\n ${mostrarArray(diferenciaSimetrica)}\n\n`);
-    } catch {
+        mostrar(`${MENSAJE_UNION}\n`);
+        mostrar(`${mostrarArray(union)}\n\n`);
+        mostrar(`${MENSAJE_INTERSECCION}\n`);
+        mostrar(`${mostrarArray(interseccion)}\n\n`);
+        mostrar(`${MENSAJE_DIFERENCIA}\n`);
+        mostrar(`${mostrarArray(diferencia)}\n\n`);
+        mostrar(`${MENSAJE_DIFERENCIA_SIMETRICA}\n`);
+        mostrar(`${mostrarArray(diferenciaSimetrica)}\n\n`);
+    } catch (error) {
+        console.log(error);
         avisar(CANCELADO);
         return -1;
     }
@@ -346,7 +351,6 @@ function pedirVector(instrucciones, caracterSeprarador) {
     do {
         respuesta = prompt(instrucciones);
         if (respuesta == null) {
-            console.log("respuesta dio null");
             throw "Se presiono cancelar.";
         } else {
             vector.push(respuesta);
@@ -354,31 +358,51 @@ function pedirVector(instrucciones, caracterSeprarador) {
     } while(respuesta != caracterSeprarador)
 
     // La siguiente línea elimina el último elemento del vector. Cuando el usuario ingresa una cadena vacía para concluir el vector actual, esa cadena vacía se agrega como último elemento del vector andtes de salir del bucle, pero no debería formar parte del vector.
-    console.log("Extraer el ultimo elemento");
-    respuesta.pop();
+    vector.pop()
     return vector;
 }
 
-function unionDeVectores(vectores) {
-    let vector = [];
+function unionDeVectores(vector1, vector2) {
+    let union = [];
 
-    return vector
+    union = vector1.concat(vector2);
+    union = sinRepetidos(union);
+    
+    return union;
 }
 
-function interseccionDeVectores(vectores) {
-    let vector = [];
+function interseccionDeVectores(vector1, vector2) {
+    let interseccion = [];
 
-    return vector
+    for (const elemento of vector1) {
+        if (vector2.includes(elemento)) {
+            interseccion.push(elemento);
+        }
+    }
+
+    return interseccion;
 }
 
-function diferenciaDeVectores(vectores) {
-    let vector = [];
+function diferenciaDeVectores(vector1, vector2) {
+    let diferencia = [];
 
-    return vector
+    for (const elemento of vector1) {
+        if (!vector2.includes(elemento)) {
+            diferencia.push(elemento);
+        }
+    }
+
+    return diferencia;
 }
 
-function diferenciaSimetricaDeVectores(vectores) {
-    let vector = [];
+function diferenciaSimetricaDeVectores(vector1, vector2) {
+    let diferenciaSimetrica = [];
+    let diferencia1 = [];
+    let diferencia2 = [];
 
-    return vector
+    diferencia1 = diferenciaDeVectores(vector1, vector2);
+    diferencia2 = diferenciaDeVectores(vector2, vector1);
+    diferenciaSimetrica = unionDeVectores(diferencia1, diferencia2);
+
+    return diferenciaSimetrica;
 }
