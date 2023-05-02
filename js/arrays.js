@@ -1,10 +1,13 @@
 // Constantes para todos los ejercicios
 const CANCELADO = "No ingresó un dato válido o bien presionó cancelar. Programa terminado.";
 const SIN_TEXTO = "No ingresó texto, no se puede seguir con el programa.";
+const INGRESE_TEXTO = "Ingrese texto por favor.";
 const CANTIDAD_NUMEROS = 10;
 const CANTIDAD_CARACTERES = 9;
 const CADENA_VACIA = "";
 const ESPACIO = ' ';
+const ALFABETO = ['A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z'];
+const TAMANIO_ALFABETO = ALFABETO.length;
 
 // funciones para usar en todos los ejercicios
 // muestra informacion en la consola
@@ -71,8 +74,8 @@ function pedirCaracteres(cantidad) {
 }
 
 // pide una cadena al usuario. tira un error si el usuario aprieta cancel.
-function pedirCadena() {
-    let cadena = prompt("Ingrese texto por favor.");
+function pedirCadena(mensaje) {
+    let cadena = prompt(mensaje);
     if (cadena == null) {
         throw "Presionó cancel. Programa cancelado.";
     } else {
@@ -405,7 +408,7 @@ function diferenciaSimetricaDeVectores(vector1, vector2) {
 // ejercicio 10, el usuario entra una cadena y se muestran dos subcadenas, una formada por los caracteres en posiciones pares y uno por los caracteres en posiciones impares
 function palabrasEntrelazadas() {
     try {
-        let cadena = pedirCadena();
+        let cadena = pedirCadena(INGRESE_TEXTO);
         if (cadena == CADENA_VACIA) {
             avisar(SIN_TEXTO);
         }
@@ -433,7 +436,7 @@ function contarVocales() {
     const VOCALES = ['A', 'E', 'I', 'O', 'U'];
 
     try {
-        let cadena = pedirCadena().toUpperCase();
+        let cadena = pedirCadena(INGRESE_TEXTO).toUpperCase();
         
         if (cadena == CADENA_VACIA) {
             avisar(SIN_TEXTO);
@@ -458,7 +461,7 @@ function contarVocales() {
 // ejercicio 12, contar palabras en una cadena
 function contarPalabras() {
     try {
-        let cadena = pedirCadena();
+        let cadena = pedirCadena(INGRESE_TEXTO);
         let palabras = [];
 
         if (cadena == CADENA_VACIA) {
@@ -476,7 +479,7 @@ function contarPalabras() {
 // ejercicio 13: calcular la longitud promedio de las palabras de una cadena ingresada por el usuario
 function longitudPromedioPalabras() {
     try {
-        let cadena = pedirCadena();
+        let cadena = pedirCadena(INGRESE_TEXTO);
         if (cadena == CADENA_VACIA) {
             avisar(SIN_TEXTO);
             return -1;
@@ -502,7 +505,7 @@ function longitudPromedioPalabras() {
 function palabrasEncadenadas() {
     try {
         // pedir cadena
-        let cadena = pedirCadena();        
+        let cadena = pedirCadena(INGRESE_TEXTO);        
 
         // separar cadena en array de palabras
         let palabras = cadena.split(ESPACIO);
@@ -540,7 +543,7 @@ function encadenado(cadena1, cadena2) {
 // ejercicio 15: pasar una frase u oracion a mayusculas.
 function aMayusculas() {
     try {
-        let cadena = pedirCadena();
+        let cadena = pedirCadena(INGRESE_TEXTO);
         if (cadena == CADENA_VACIA) {
             mostrar("La cadena esta vacía. No hay letras para pasar a mayusculas.");
         } else {
@@ -548,5 +551,62 @@ function aMayusculas() {
         }
     } catch (error) {
         avisar(error);
+    }
+}
+
+/***************************************************************************************************** */
+// ejercicio 16: aplicar cifrado Cesar a un mensaje
+function programaCifrarCesar() {
+    const INGRESE_DESPLAZAMIENTO = "Ingrese un numero entero mayor que 0 y no multiplo de 25.\nSi ingresa 0 o un múltiplo de 25 se utilizara 1.";
+
+    try {
+        // pedir una cadena al usuario
+        let cadena = pedirCadena(INGRESE_TEXTO);
+        if (cadena.length == 0) {
+            avisar("No ingresó un mensaje. No hay nada que cifrar.");
+        } else {
+            // pedir un numero entero positivo, no 0 ni multiplo de 26
+            let desplazamiento = pedirEnteroPositivo(INGRESE_DESPLAZAMIENTO);
+            if (desplazamiento == 0 || desplazamiento % TAMANIO_ALFABETO == 0) {
+                desplazamiento = 1;
+            }
+
+            // aplicar cifrado cesar
+            let mensajeCifrado = cifrarCesar(cadena, desplazamiento);
+    
+            // mostrar el mensaje cifrado
+            mostrar(mensajeCifrado);
+        }
+    } catch (error) {
+        avisar(error);
+    }
+}
+
+function cifrarCesar(mensaje, desplazamiento) {
+    let codigo = "";
+    mensaje = mensaje.toUpperCase();
+
+    for (const letra of mensaje) {
+        let nuevaLetra = "";
+        if (ALFABETO.includes(letra)) {
+            const indice = ALFABETO.indexOf(letra);
+            nuevaLetra = ALFABETO[(indice + desplazamiento) % TAMANIO_ALFABETO];
+        } else {
+            nuevaLetra = letra;
+        }
+        codigo += nuevaLetra;
+    }
+    return codigo;
+}
+
+/***************************************************************************************************** */
+// ejercicio 17: quebrar Cesar a fuerza bruta
+function programaDescifrarCesar() {
+    let mensajeCifrado = "Bm nmtqkqbw. Pia xwlqlw lmakqnziz ti kilmvi."
+    
+    // revertir el cifrado cesar con cada uno de los 25 posibles desplazamientos
+    for (let i = 1; i < TAMANIO_ALFABETO; i++) {
+        const mensaje = cifrarCesar(mensajeCifrado, i);
+        mostrar(`${i} ${mensaje}`);
     }
 }

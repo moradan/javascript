@@ -193,21 +193,30 @@ function continuar(mensaje) {
 }
 
 function pedirCantidad (mensaje) {
-    let respuesta = leerNumeroPositivo(mensaje);
+    let respuesta = pedirNumeroPositivo(mensaje);
 
     if (respuesta == null) {
-        return respuesta;
+        throw "Eligió cancelar el programa.";
     }
-    let cantidad = parseInt(respuesta);
 
-    return cantidad;
+    return parseInt(respuesta);
+}
+
+function pedirEnteroPositivo(mensaje) {
+    let respuesta = pedirNumeroPositivo(mensaje);
+
+    if (respuesta == null) {
+        throw "Eligió cancelar el programa.";
+    }
+
+    return parseInt(respuesta);
 }
 
 function pedirPrecio (mensaje) {
-    return leerNumeroPositivo(mensaje);
+    return pedirNumeroPositivo(mensaje);
 }
 
-function leerNumeroPositivo(mensaje) {
+function pedirNumeroPositivo(mensaje) {
     let respuesta;
     let numero;
 
@@ -215,10 +224,11 @@ function leerNumeroPositivo(mensaje) {
         respuesta = prompt(mensaje);
 
         if (respuesta == null) {
-            return respuesta;
+            throw "Eligió cancelar.";
         }
         numero = parseFloat(respuesta);    
     } while (isNaN(numero) || numero < 0)
+    
     return numero;
 }
 
@@ -274,7 +284,7 @@ function pedirEdad(min, max) {
     
     let edad;
     do {
-        edad = leerNumeroPositivo(MENSAJE);
+        edad = pedirNumeroPositivo(MENSAJE);
         if (edad == null) {
             return edad;
         }
