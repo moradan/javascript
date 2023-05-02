@@ -471,3 +471,35 @@ function contarPalabras() {
         avisar(CANCELADO);
     }
 }
+
+/***************************************************************************************************** */
+// ejercicio 13: calcular la longitud promedio de las palabras de una cadena ingresada por el usuario
+function longitudPromedioPalabras() {
+    try {
+        let cadena = pedirCadena();
+        if (cadena == CADENA_VACIA) {
+            avisar(SIN_TEXTO);
+            return -1;
+        } else {
+            let longitudes = [];
+            let palabras = cadena.split(ESPACIO);
+            
+            for (const palabra of palabras) {
+                let longitud = palabra.length;
+                let cantidadSignos = 0;
+                if (esPuntuacion(palabra[0])) {
+                    cantidadSignos++;
+                }
+                if (esPuntuacion(palabra[longitud - 1])) {
+                    cantidadSignos++;
+                }
+                longitudes.push(longitud - cantidadSignos);
+            }
+            let promedio = promedioArray(longitudes);
+            mostrar(promedio);
+        }
+    } catch (error) {
+        console.log(error);
+        avisar(CANCELADO);
+    }
+}

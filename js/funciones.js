@@ -30,6 +30,12 @@ function esVocal(caracter) {
     return vocales.test(caracter);
 }
 
+function esPuntuacion(caracter) {
+    const puntuaciones = /[¡!¿?,.]/
+
+    return puntuaciones.test(caracter);
+}
+
 function sucesion(a, b) {
     let sucecion = [];
 
@@ -370,4 +376,8 @@ function calcularFrecuencia(elemento, lista) {
     }
 
     return frecuencia;
+}
+
+function promedioArray(array) {
+    return sumarArray(array) / array.length;
 }
