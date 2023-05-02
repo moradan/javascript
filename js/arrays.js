@@ -4,6 +4,7 @@ const SIN_TEXTO = "No ingresó texto, no se puede seguir con el programa.";
 const CANTIDAD_NUMEROS = 10;
 const CANTIDAD_CARACTERES = 9;
 const CADENA_VACIA = "";
+const ESPACIO = ' ';
 
 // funciones para usar en todos los ejercicios
 // muestra informacion en la consola
@@ -82,7 +83,7 @@ function pedirCadena() {
 // recibe un array y suma todos los valores numericos salteandose una cantidad de elementos de acuerdo al parametro SALTO. Ignora valores no numericos. Devuelve null si no recibe un array con al menos 1 elemento. Devuelve 0 si recibe un array con contenido pero sin numeros.
 function sumarArray(array) {
     let suma = 0;
-    if (array == null || array == undefined || array.length==0) {
+    if (array == null || array == undefined || array.length == 0) {
         throw new Error("El array no es válido.");
     } else {
         for(const elemento of array) {
@@ -98,29 +99,27 @@ function sumarArray(array) {
 // Ejercicio 1 Arriba del Promedio
 // pide una lista de 10 numeros, calcula el promedio, y luego muestra ese promedio y lista los numero por arriba del promedio.
 function arribaDelPromedio () {
-    let numeros = [];
-    numeros = pedirNumeros(CANTIDAD_NUMEROS);
-    if(numeros == null) {
-        avisar(CANCELADO);
-        return -1;
-    }
-
-    let promedio = calcularPromedio(numeros);
-
-    mostrar(`El promedio es ${promedio}, y los valores por encima del promedio fueron:\n`);
+    try {
+        let numeros = pedirNumeros(CANTIDAD_NUMEROS);
+        let promedio = calcularPromedio(numeros);
     
-    for (const numero of numeros) {
-        if (numero > promedio) {
-            mostrar(numero);
+        mostrar(`El promedio es ${promedio}, y los valores por encima del promedio fueron:\n`);
+        
+        for (const numero of numeros) {
+            if (numero > promedio) {
+                mostrar(numero);
+            }
         }
+    } catch {
+        avisar(CANCELADO);
     }
+
 }
 
 // recibe un array de numeros, calcula el promedio y lo devuelve
 function calcularPromedio(numeros) {
     return sumarArray(numeros) / numeros.length;
 }
-
 
 /***************************************************************************************************** */
 // Ejercicio 2 mostrar todos los múltiplos del último número en un array de 10.
@@ -160,11 +159,9 @@ function multiplosDe(lista, numero) {
     }
 }
 
-
 /***************************************************************************************************** */
 // ejercicio 3 pide 10 numeros, calcula el maximo, muestra ese maximo e indica cuantas veces fue ingresado
-function frecuenciaDelMaximo () {
-    
+function frecuenciaDelMaximo () {  
     try {
         let numeros = pedirNumeros(CANTIDAD_NUMEROS);
         let maximo = buscarMaximo(numeros);
@@ -174,10 +171,8 @@ function frecuenciaDelMaximo () {
         return cantidad;
     } catch {
         avisar(CANCELADO);
-        return -1;
     }
 }
-
 
 /***************************************************************************************************** */
 // ejercicio 4 que pide 10 numeros y suma los que se hayan ingresado en los turnos pares
@@ -188,7 +183,6 @@ function programaSumarLugaresPares() {
         mostrar(suma);
     } catch {
         avisar(CANCELADO);
-        return -1;
     }
 
 }
@@ -209,7 +203,6 @@ function sumarLugaresPares(array) {
     }
 }
 
-
 /***************************************************************************************************** */
 // ejercicio 5 tomar un array de 9 caracteres e invertir el orden
 function invertirArrayDeCaracteres() {
@@ -219,9 +212,7 @@ function invertirArrayDeCaracteres() {
         mostrar(caracteres);
     } catch {
         avisar(CANCELADO);
-        return -1;
     }
-
 }
 
 function invertirArray(array){
@@ -238,7 +229,6 @@ function invertirArray(array){
     }
 }
 
-
 /***************************************************************************************************** */
 // ejercicio 6 desplazar un array de 9 caracteres 1 lugar hacia la derecha y ponerl el ultimo al principio.
 function rightShift() {
@@ -249,10 +239,8 @@ function rightShift() {
         mostrar(caracteres);
     } catch {
         avisar(CANCELADO);
-        return -1;
     }
 }
-
 
 /***************************************************************************************************** */
 // ejercicio 7 determinar si la palabra representada por los caracteres de un array conforman un palindromo
@@ -263,7 +251,6 @@ function programaEsPalindromo() {
         return esPalindromo(caracteres);
     } catch {
         avisar(CANCELADO);
-        return -1;
     }
 }
 
@@ -284,7 +271,6 @@ function esPalindromo(array) {
     return i == CENTRO;
 }
 
-
 /***************************************************************************************************** */
 // ejercicio 8 toma un array y muestra sus elementos sin repetir elementos
 function mostrarSinRepetidos() {
@@ -295,7 +281,6 @@ function mostrarSinRepetidos() {
         mostrarArray(caracteresUnicos);
     } catch {
         avisar(CANCELADO);
-        return -1;
     }
 }
 
@@ -310,7 +295,6 @@ function sinRepetidos(array) {
 
     return unicos;
 }
-
 
 /***************************************************************************************************** */
 // ejercicio 9 lee del usuario 2 vectores de longitud indefinida. Ejecuta 4 operaciones de conjuntos, union, interseccion, diferencia y diferencia simetrica.
@@ -338,9 +322,7 @@ function programaOperacionesConConjuntos() {
         mostrar(`\n\n${MENSAJE_DIFERENCIA_SIMETRICA}\n`);
         mostrarArray(diferenciaSimetrica);
     } catch (error) {
-        console.log(error);
         avisar(CANCELADO);
-        return -1;
     }
 }
 
@@ -442,7 +424,6 @@ function palabrasEntrelazadas() {
         mostrar(mensaje);
     } catch {
         avisar(CANCELADO);
-        return -1;
     }   
 }
 
@@ -475,11 +456,16 @@ function contarVocales() {
 
 /***************************************************************************************************** */
 // ejercicio 12, contar palabras en una cadena
-function contarPalabras(){
+function contarPalabras() {
     try {
         let cadena = pedirCadena();
+        let palabras = [];
+
         if (cadena == CADENA_VACIA) {
             avisar(SIN_TEXTO);
+        } else {
+            palabras = cadena.split(ESPACIO);
+            mostrar(palabras.length);
         }
     } catch {
         avisar(CANCELADO);
