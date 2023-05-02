@@ -30,10 +30,10 @@ function esVocal(caracter) {
     return vocales.test(caracter);
 }
 
-function esPuntuacion(caracter) {
-    const puntuaciones = /[¡!¿?,.]/
+function quitarPuntuacion(caracteres) {
+    const puntuaciones = /[!¡"#$%&'()*+,./:;<=>¿?@[\]^`{|}~]/g;
 
-    return puntuaciones.test(caracter);
+    return caracteres.replace(puntuaciones, '');
 }
 
 function sucesion(a, b) {
