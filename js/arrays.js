@@ -11,8 +11,9 @@ function mostrar(mensaje) {
 }
 
 function mostrarArray(array) {
-    for (const elemento of array) {
-        console.log(elemento);
+    let longitud = array.length;
+    for (let i = 0; i < longitud; i++) {
+        console.log(array[i]);
     }
 }
 
@@ -65,6 +66,16 @@ function pedirCaracteres(cantidad) {
         }
     }
     return caracteres;
+}
+
+// pide una cadena al usuario. tira un error si el usuario aprieta cancel.
+function pedirCadena() {
+    let cadena = prompt("Ingrese texto por favor.");
+    if (cadena == null) {
+        throw "Presionó cancel. Programa cancelado.";
+    } else {
+        return cadena;
+    }
 }
 
 // recibe un array y suma todos los valores numericos salteandose una cantidad de elementos de acuerdo al parametro SALTO. Ignora valores no numericos. Devuelve null si no recibe un array con al menos 1 elemento. Devuelve 0 si recibe un array con contenido pero sin numeros.
@@ -304,28 +315,27 @@ function sinRepetidos(array) {
 // ejercicio 9 lee del usuario 2 vectores de longitud indefinida. Ejecuta 4 operaciones de conjuntos, union, interseccion, diferencia y diferencia simetrica.
 function programaOperacionesConConjuntos() {
     const INSTRUCCIONES = "Ingrese un conjunto de caracteres de a uno por vez.\nPresione Enter sin ingresar nada para pasar al sieguiente paso.";
-    const MENSAJE_UNION = "La unión entre los dos vectores ingresados es:";
-    const MENSAJE_INTERSECCION = "La intersección de los dos vectores es:";
-    const MENSAJE_DIFERENCIA = "La diferencia del primer vector con el segundo es:";
-    const MENSAJE_DIFERENCIA_SIMETRICA = "La diferencia simetrica entre ambos vectores es:";
+    const MENSAJE_UNION = "La unión entre los dos conjuntos ingresados es:";
+    const MENSAJE_INTERSECCION = "La intersección de los dos conjuntos es:";
+    const MENSAJE_DIFERENCIA = "La diferencia del primer conjunto con el segundo es:";
+    const MENSAJE_DIFERENCIA_SIMETRICA = "La diferencia simetrica entre ambos conjunto es:";
     const CANTIDAD_VECTORES = 2;
 
     try {
-        let vectores = [];
-        vectores = pedirVectores(INSTRUCCIONES ,CANTIDAD_VECTORES, CADENA_VACIA);
+        let vectores = pedirVectores(INSTRUCCIONES ,CANTIDAD_VECTORES, CADENA_VACIA);
         let union = unionDeVectores(vectores[0], vectores[1]);
         let interseccion = interseccionDeVectores(vectores[0], vectores[1]);
         let diferencia = diferenciaDeVectores(vectores[0], vectores[1]);
         let diferenciaSimetrica = diferenciaSimetricaDeVectores(vectores[0], vectores[1]);
         
         mostrar(`${MENSAJE_UNION}\n`);
-        mostrar(`${mostrarArray(union)}\n\n`);
-        mostrar(`${MENSAJE_INTERSECCION}\n`);
-        mostrar(`${mostrarArray(interseccion)}\n\n`);
-        mostrar(`${MENSAJE_DIFERENCIA}\n`);
-        mostrar(`${mostrarArray(diferencia)}\n\n`);
-        mostrar(`${MENSAJE_DIFERENCIA_SIMETRICA}\n`);
-        mostrar(`${mostrarArray(diferenciaSimetrica)}\n\n`);
+        mostrarArray(union);
+        mostrar(`\n\n${MENSAJE_INTERSECCION}\n`);
+        mostrarArray(interseccion);
+        mostrar(`\n\n${MENSAJE_DIFERENCIA}\n`);
+        mostrarArray(diferencia);
+        mostrar(`\n\n${MENSAJE_DIFERENCIA_SIMETRICA}\n`);
+        mostrarArray(diferenciaSimetrica);
     } catch (error) {
         console.log(error);
         avisar(CANCELADO);
@@ -358,7 +368,7 @@ function pedirVector(instrucciones, caracterSeprarador) {
     } while(respuesta != caracterSeprarador)
 
     // La siguiente línea elimina el último elemento del vector. Cuando el usuario ingresa una cadena vacía para concluir el vector actual, esa cadena vacía se agrega como último elemento del vector andtes de salir del bucle, pero no debería formar parte del vector.
-    vector.pop()
+    vector.pop();
     return vector;
 }
 
@@ -385,9 +395,10 @@ function interseccionDeVectores(vector1, vector2) {
 
 function diferenciaDeVectores(vector1, vector2) {
     let diferencia = [];
+    let interseccion = interseccionDeVectores(vector1, vector2);
 
     for (const elemento of vector1) {
-        if (!vector2.includes(elemento)) {
+        if (!interseccion.includes(elemento)) {
             diferencia.push(elemento);
         }
     }
@@ -396,13 +407,63 @@ function diferenciaDeVectores(vector1, vector2) {
 }
 
 function diferenciaSimetricaDeVectores(vector1, vector2) {
+    let union = [];
+    let interseccion = [];
     let diferenciaSimetrica = [];
-    let diferencia1 = [];
-    let diferencia2 = [];
 
-    diferencia1 = diferenciaDeVectores(vector1, vector2);
-    diferencia2 = diferenciaDeVectores(vector2, vector1);
-    diferenciaSimetrica = unionDeVectores(diferencia1, diferencia2);
+    union = unionDeVectores(vector1, vector2);
+    interseccion = interseccionDeVectores(vector2, vector1);
+    diferenciaSimetrica = diferenciaDeVectores(union, interseccion);
 
     return diferenciaSimetrica;
+}
+
+/***************************************************************************************************** */
+// ejercicio 10, el usuario entra una cadena y se muestran dos subcadenas, una formada por los caracteres en posiciones pares y uno por los caracteres en posiciones impares
+function palabrasEntrelazadas() {
+    try {
+        let cadena = pedirCadena();
+        if (cadena == CADENA_VACIA) {
+            avisar("No ingresó texto, programa cancelado.");
+        }
+
+        let subCadena1 = [];
+        let subCadena2 = [];
+        for (let i = 0; i < cadena.length; i++) {
+            if (esPar(i)) {
+                subCadena1.push(cadena[i]);
+            } else {
+                subCadena2.push(cadena[i]);
+            }
+        }
+        
+        mensaje = `Las posiciones impares forman la palabra: ${subCadena1.join("")}; las pares: ${subCadena2.join("")}`;
+        mostrar(mensaje);
+    } catch {
+        avisar(CANCELADO);
+        return -1;
+    }   
+}
+
+/***************************************************************************************************** */
+// ejercicio 11, el usuario entra una cadena y se deben contar cuantas vocales contiene la cadena
+function contarVocales() {
+    try {
+        let cadena = pedirCadena();
+        let cantidadVocales = 0;
+
+        if (cadena.length = 0) {
+            avisar("La cadena esta vacía, por lo tanto no contiene vocales.");
+        } else {
+            for (const caracter of cadena) {
+                if (esVocal(caracter)) {
+                    cantidadVocales++;
+                }
+            }
+    
+            mostrar(`La cadena ingresada:\n${cadena}\nContiene ${cantidadVocales} vocales.`);
+        }
+    } catch {
+        avisar(CANCELADO);
+    }
 }
