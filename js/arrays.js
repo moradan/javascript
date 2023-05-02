@@ -496,3 +496,57 @@ function longitudPromedioPalabras() {
         avisar(CANCELADO);
     }
 }
+
+/***************************************************************************************************** */
+// ejercicio 14: pedir al usuario ingresar una frase; mostrar los pares de palabras consecutivas donde la primer palabra termine con la inicial de la siguiente palabra. 
+function palabrasEncadenadas() {
+    try {
+        // pedir cadena
+        let cadena = pedirCadena();        
+
+        // separar cadena en array de palabras
+        let palabras = cadena.split(ESPACIO);
+        
+        // asegurarnos de que haya al menos 2 palabras
+        if (palabras.length < 2) {
+            avisar("Hace falta un mínimo de 2 palabras para jugar este juego.");
+        } else {
+            // por cada palabra desde la primera a la anteultima evaluar si encadena con la siguiente
+            const anteultimo = palabras.length - 1;
+            const cantidadCadenas = 0;
+            for (let i = 0; i < anteultimo; i++) {
+                let palabraActual = palabras[i];
+                let palabraSiguiente = palabras[i + 1];
+                if (encadenado(palabraActual, palabraSiguiente)) {
+                    mostrar(`${palabraActual} ${palabraSiguiente}`);
+                    cantidadCadenas++;
+                }
+            }
+            if (cantidadCadenas == 0) {
+                mostrar("Este texto no contenía ningún par de palabras encadenadas.");
+            }
+        }
+    } catch (error) {
+        avisar(CANCELADO);
+    }
+}
+
+//devuelve true si el ultimo caracter de cadena1 es igual al primer caracter de cadena2
+function encadenado(cadena1, cadena2) {
+    return (cadena1.slice(-1) == cadena2.slice(0, 1));
+}
+
+/***************************************************************************************************** */
+// ejercicio 15: pasar una frase u oracion a mayusculas.
+function aMayusculas() {
+    try {
+        let cadena = pedirCadena();
+        if (cadena == CADENA_VACIA) {
+            mostrar("La cadena esta vacía. No hay letras para pasar a mayusculas.");
+        } else {
+            mostrar(cadena.toUpperCase());
+        }
+    } catch (error) {
+        avisar(error);
+    }
+}
