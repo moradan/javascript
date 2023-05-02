@@ -486,8 +486,7 @@ function longitudPromedioPalabras() {
             
             for (let palabra of palabras) {
                 palabra = quitarPuntuacion(palabra);
-                let longitud = palabra.length;
-                longitudes.push(longitud);
+                longitudes.push(palabra.length);
             }
             let promedio = promedioArray(longitudes);
             mostrar(promedio);
