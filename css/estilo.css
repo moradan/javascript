@@ -1,3 +1,7 @@
+body {
+ min-height: 100vh;
+}
+
 .img-titulo {
     width: 5rem;
     height: auto;

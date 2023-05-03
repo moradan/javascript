@@ -73,27 +73,25 @@ function tablaMultiplicar() {
 function fizzBuzz() {
     const CANCELAR = "Cancelando el programa.";
 
-    let numero = parseInt(prompt("Ingrese un número natural (no 0)."));
-    if (isNaN(numero)) {
+    let limite = parseInt(prompt("Ingrese un número natural (no 0)."));
+    while(!isNaN(limite) && limite < 1) {
+        limite = parseInt(prompt("El número debe ser igual o mayor que 1. Igrese otro número."));
+    }
+
+    if (isNaN(limite)) {
         alert(CANCELAR);
-        return -1;
-    }
-
-    while(numero < 1) {
-        numero = parseInt(prompt("El número debe ser igual o mayor que 1. Igrese otro número."));
-    }
-
-    let mensaje = `Estos son los primeros ${numero} multiplos de 3 excluyendo los multiplos de 5.\n`;
-
-    for (let cantidad = 0, iterador = 1; cantidad <= numero; iterador++) {
-        multiplo = iterador * 3;
-        if (multiplo % 5 != 0) {
-            mensaje += `${multiplo}\n`;
-            cantidad++;
-        }
-    }
+    } else {
+        let mensaje = `Estos son los primeros ${limite} multiplos de 3 excluyendo los multiplos de 5.\n`;
     
-    alert(mensaje);
+        for (let cantidad = 1, iterador = 1; cantidad <= limite; iterador++) {
+            multiplo = iterador * 3;
+            if (multiplo % 5 != 0) {
+                mensaje += `${multiplo}\n`;
+                cantidad++;
+            }
+        }  
+        alert(mensaje);
+    }
 }
 
 function edadMultiplos() {
