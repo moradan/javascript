@@ -84,8 +84,8 @@ function fizzBuzz() {
         let mensaje = `Estos son los primeros ${limite} multiplos de 3 excluyendo los multiplos de 5.\n`;
     
         for (let cantidad = 1, iterador = 1; cantidad <= limite; iterador++) {
-            multiplo = iterador * 3;
-            if (multiplo % 5 != 0) {
+            if (iterador % 5 != 0) {
+                multiplo = iterador * 3;
                 mensaje += `${multiplo}\n`;
                 cantidad++;
             }
