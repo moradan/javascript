@@ -83,13 +83,13 @@ function fizzBuzz() {
     } else {
         let mensaje = `Estos son los primeros ${limite} multiplos de 3 excluyendo los multiplos de 5.\n`;
     
-        for (let cantidad = 1, iterador = 1; cantidad <= limite; iterador++) {
-            if (iterador % 5 != 0) {
-                multiplo = iterador * 3;
-                mensaje += `${multiplo}\n`;
-                cantidad++;
-            }
-        }  
+        for (let cantidad = 1, generador = 1; cantidad <= limite; cantidad++) {
+            if (generador % 5 != 0) {
+                generador++;
+            }  
+            multiplo = generador * 3;
+            mensaje += `${multiplo}\n`;
+        }
         alert(mensaje);
     }
 }
