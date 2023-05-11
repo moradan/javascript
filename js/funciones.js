@@ -193,13 +193,12 @@ function continuar(mensaje) {
 }
 
 function pedirCantidad (mensaje) {
-    let respuesta = pedirNumeroPositivo(mensaje);
-
-    if (respuesta == null) {
-        throw "Eligió cancelar el programa.";
+    try {
+        let respuesta = pedirNumeroPositivo(mensaje);
+        return parseInt(respuesta);
+    } catch (error) {
+        throw error;
     }
-
-    return parseInt(respuesta);
 }
 
 function pedirEnteroPositivo(mensaje) {
@@ -294,17 +293,17 @@ function pedirEdad(min, max) {
 }
 
 function laCuenta() {
-    let items = ingresarItems();
-    let cuenta = 0;
-
-    if (items.length > 0) {
+    try {
+        let items = ingresarItems();
+        let cuenta = 0;
+        
         cuenta = sumar(items).toFixed(2);
         mensaje = `La cuenta es de $${cuenta}.`
-    } else {
-        mensaje = "La cuenta esta vacia.";
+        mostrar(mensaje);
+    } catch (error) {
+        mostrar(error);
     }
 
-    mostrar(mensaje);
 }
 
 function sumar(lista) {
@@ -328,19 +327,12 @@ function ingresarItems() {
     let monto = 0;
 
     do {
-        do {
+        try {
             cantidad = pedirCantidad(MENSAJE_CANTIDAD);
-            if (cantidad == null && !continuar(MENSAJE_CERRAR)) {
-                return lista;
-            } 
-        } while(cantidad == null)
-        
-        do {
             precioUnitario = pedirPrecio(MENSAJE_PRECIO);
-            if (precioUnitario == null && !continuar(MENSAJE_CERRAR)) {
-                return lista;
-            }
-        } while(precioUnitario == null)
+        } catch (error) {
+            throw error;
+        }
         
         monto = cantidad * precioUnitario;
         lista.push(monto);
